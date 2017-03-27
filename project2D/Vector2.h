@@ -21,11 +21,20 @@ public:
 	// Subtraction
 	Vector2 operator-(const Vector2& rhs);
 
+	// Divide
+	Vector2 operator/(const Vector2& rhs);
+
 	// Multiply vector by float
 	Vector2 operator*(const float rhs);
 	
 	// Dot product
-	float Dot(Vector2 rhs);
+	float DotProduct(const Vector2& rhs);
+
+	// Magnititude
+	float Magnititude(const Vector2& rhs);
+
+	// Normalise
+	
 
 	// Allow negative vector
 	Vector2 operator-();
@@ -41,7 +50,6 @@ Vector2 operator*(float lhs, const Vector2& rhs);
 
 
 // BONUS
-// make sure to do dev
 // do plus equels
 // do minus equels
 // do times equels

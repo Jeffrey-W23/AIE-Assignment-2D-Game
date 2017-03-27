@@ -34,6 +34,15 @@ Vector2 Vector2::operator-(const Vector2& rhs)
 	return result;
 }
 
+Vector2 Vector2::operator/(const Vector2& rhs)
+{
+	Vector2 result;
+	result.x = x / rhs.x;
+	result.y = y / rhs.y;
+
+	return result; // float?
+}
+
 Vector2 Vector2::operator*(float rhs)
 {
 	Vector2 result;
@@ -52,12 +61,19 @@ Vector2 operator*(float lhs, const Vector2& rhs)
 	return result;
 }
 
-float Dot(Vector2 rhs)
+float DotProduct(const Vector2& rhs)
 {
 	// return dot product
+	Vector2 result;
+	result.x * rhs.x + result.y * rhs.y;
+	return result;
 }
 
-// Allow negative vector
+float Magnititude(const Vector2& rhs)
+{
+	// sqrt x^2 + y^2
+}
+
 Vector2 Vector2::operator-()
 {
 	Vector2 result;
