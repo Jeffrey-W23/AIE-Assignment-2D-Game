@@ -1,21 +1,26 @@
+// #include, using, etc
 #include "Vector2.h"
 
+// Default Constructor
 Vector2::Vector2()
 {
 	x = 0;
 	y = 0;
 }
 
+// Constructor passing in 2 floats
 Vector2::Vector2(float x, float y)
 {
 	this->x = x;
 	this->y = y;
 }
 
+// Default Destructor
 Vector2::~Vector2()
 {
 }
 
+// Addition
 Vector2 Vector2::operator+(const Vector2& rhs)
 {
 	Vector2 result;
@@ -25,6 +30,7 @@ Vector2 Vector2::operator+(const Vector2& rhs)
 	return result;
 }
 
+// Subtraction
 Vector2 Vector2::operator-(const Vector2& rhs)
 {
 	Vector2 result;
@@ -34,16 +40,18 @@ Vector2 Vector2::operator-(const Vector2& rhs)
 	return result;
 }
 
-Vector2 Vector2::operator/(const Vector2& rhs)
+// Divide
+Vector2 Vector2::operator/(const float rhs)
 {
 	Vector2 result;
-	result.x = x / rhs.x;
-	result.y = y / rhs.y;
+	result.x = x / rhs;
+	result.y = y / rhs;
 
-	return result; // float?
+	return result;
 }
 
-Vector2 Vector2::operator*(float rhs)
+// Multiply vector by float
+Vector2 Vector2::operator*(const float rhs)
 {
 	Vector2 result;
 	result.x = x * rhs;
@@ -52,6 +60,7 @@ Vector2 Vector2::operator*(float rhs)
 	return result;
 }
 
+// Multiply float by vector ( out side of class so we can order )
 Vector2 operator*(float lhs, const Vector2& rhs)
 {
 	Vector2 result;
@@ -61,24 +70,99 @@ Vector2 operator*(float lhs, const Vector2& rhs)
 	return result;
 }
 
-float DotProduct(const Vector2& rhs)
+// Dot product
+float Vector2::DotProduct(const Vector2& rhs)
 {
-	// return dot product
-	Vector2 result;
-	result.x * rhs.x + result.y * rhs.y;
+	float result;
+	result = x * rhs.x + y * rhs.y;
 	return result;
 }
 
-float Magnititude(const Vector2& rhs)
+// Magnititude
+float Vector2::Magnititude()
 {
-	// sqrt x^2 + y^2
+	float result;
+	result = sqrtf(x*x + y*y);
+	return result;
 }
 
+// Magnititude Squared
+float Vector2::MagnititudeSquared()
+{
+	float result;
+	result = x*x + y*y;
+	return result;
+}
+
+// Normalise
+void Vector2::Normalise()
+{
+	float mag = Magnititude();
+
+	if (mag != 0)
+	{
+		x = x / mag;
+		y = y / mag;
+	}
+}
+
+// Allow negative vector
 Vector2 Vector2::operator-()
 {
 	Vector2 result;
 	result.x = -x;
 	result.y = -y;
+
+	return result;
+}
+
+// Greater then operator
+bool Vector2::operator>(const Vector2 rhs)
+{
+	return (x > rhs.x && y > rhs.y);
+}
+
+// Less then operator
+bool Vector2::operator<(const Vector2 rhs)
+{
+	return (x < rhs.x && y < rhs.y);
+
+}
+
+// Override plus equels
+Vector2 Vector2::operator+=(const Vector2& rhs)
+{
+	x += rhs.x;
+	y += rhs.y;
+
+	return *this;
+}
+
+// Override minus equels
+Vector2 Vector2::operator-=(const Vector2& rhs)
+{
+	x -= rhs.x;
+	y -= rhs.y;
+
+	return *this;
+}
+
+// Override multiply equels
+Vector2 Vector2::operator*=(const float rhs)
+{
+	Vector2 result;
+	result.x = x *= rhs;
+	result.y = y *= rhs;
+
+	return result;
+}
+
+// Override divide equels
+Vector2 Vector2::operator/=(const float rhs)
+{
+	Vector2 result;
+	result.x = x /= rhs;
+	result.y = y /= rhs;
 
 	return result;
 }

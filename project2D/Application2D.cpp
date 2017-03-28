@@ -8,20 +8,12 @@ using namespace aie;
 
 Application2D::Application2D() 
 {
-	//Vector2 lhs;
-	//Vector2 rhs;
 
-	////Vector2(4,5);
-	////Vector2(5,6);
-
-	//Vector2 VECTORPLUSVECTOR = lhs + rhs;
-	//Vector2 VECTORPLUSVECTOR = lhs.operator+(rhs);
-	//Vector2 VECTORxFLOAT = lhs * 5.0f;
-	//Vector2 FLOATxVECTOR = 5.0f * lhs;
 }
 
 Application2D::~Application2D() 
 {
+
 }
 
 bool Application2D::startup() 

@@ -1,5 +1,6 @@
 // #include, using, etc
 #pragma once
+#include "math.h"
 
 // Vector2 object
 class Vector2
@@ -22,7 +23,7 @@ public:
 	Vector2 operator-(const Vector2& rhs);
 
 	// Divide
-	Vector2 operator/(const Vector2& rhs);
+	Vector2 operator/(const float rhs);
 
 	// Multiply vector by float
 	Vector2 operator*(const float rhs);
@@ -31,13 +32,34 @@ public:
 	float DotProduct(const Vector2& rhs);
 
 	// Magnititude
-	float Magnititude(const Vector2& rhs);
+	float Magnititude();
+
+	// Magnititude Squared
+	float MagnititudeSquared();
 
 	// Normalise
-	
+	void Normalise();
 
 	// Allow negative vector
 	Vector2 operator-();
+
+	// Greater then operator
+	bool operator>(const Vector2 rhs);
+
+	// Less then operator
+	bool operator<(const Vector2 rhs);
+
+	// plus equels
+	Vector2 operator+=(const Vector2& rhs);
+	
+	// minus equels
+	Vector2 operator-=(const Vector2& rhs);
+	
+	// Multiply equels
+	Vector2 operator*=(const float rhs);
+	
+	// Divide equels
+	Vector2 operator/=(const float rhs);
 
 	// declare public floats for x and y
 	float x;
@@ -46,13 +68,3 @@ public:
 
 // Float multiplyed by vector ( out side of class so we can order )
 Vector2 operator*(float lhs, const Vector2& rhs);
-
-
-
-// BONUS
-// do plus equels
-// do minus equels
-// do times equels
-// do dev equels
-
-// how do I overload this operator c++
