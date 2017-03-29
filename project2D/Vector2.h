@@ -40,6 +40,9 @@ public:
 	// Normalise
 	void Normalise();
 
+	// Normalised
+	static Vector2 Normalised(Vector2 data);
+
 	// Allow negative vector
 	Vector2 operator-();
 

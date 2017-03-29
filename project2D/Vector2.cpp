@@ -106,6 +106,22 @@ void Vector2::Normalise()
 	}
 }
 
+// Normalised
+Vector2 Vector2::Normalised(Vector2 data)
+{
+	float mag = data.Magnititude();
+
+	Vector2 result;
+
+	if (mag != 0)
+	{
+		result.x = data.x / mag;
+		result.y = data.y / mag;
+		
+		return result;
+	}
+}
+
 // Allow negative vector
 Vector2 Vector2::operator-()
 {

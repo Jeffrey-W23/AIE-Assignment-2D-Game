@@ -125,6 +125,23 @@ void Vector3::Normalise()
 	}
 }
 
+// Normalised
+Vector3 Vector3::Normalised(Vector3 data)
+{
+	float mag = data.Magnititude();
+
+	Vector3 result;
+
+	if (mag != 0)
+	{
+		result.x = data.x / mag;
+		result.y = data.y / mag;
+		result.z = data.z / mag;
+
+		return result;
+	}
+}
+
 // Allow negative vector
 Vector3 Vector3::operator-()
 {

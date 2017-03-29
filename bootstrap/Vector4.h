@@ -43,6 +43,9 @@ public:
 	// Normalise
 	void Normalise();
 
+	// Normalised
+	static Vector4 Normalised(Vector4 data);
+
 	// Allow negative vector
 	Vector4 operator-();
 

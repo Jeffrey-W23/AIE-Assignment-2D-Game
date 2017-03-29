@@ -134,6 +134,24 @@ void Vector4::Normalise()
 	}
 }
 
+// Normalised
+Vector4 Vector4::Normalised(Vector4 data)
+{
+	float mag = data.Magnititude();
+
+	Vector4 result;
+
+	if (mag != 0)
+	{
+		result.x = data.x / mag;
+		result.y = data.y / mag;
+		result.z = data.z / mag;
+		result.w = data.w / mag;
+
+		return result;
+	}
+}
+
 // Allow negative vector
 Vector4 Vector4::operator-()
 {
