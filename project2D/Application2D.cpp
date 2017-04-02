@@ -20,7 +20,7 @@ bool Application2D::startup()
 {
 	m_2dRenderer = new Renderer2D();
 
-	m_shipTexture = new Texture("./textures/ship.png");
+	m_shipTexture = new Texture("./textures/LargeShip.png");
 
 	m_font = new Font("./font/consolas.ttf", 32);
 
