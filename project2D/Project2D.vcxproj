@@ -94,6 +94,9 @@
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Matrix2.cpp" />
+    <ClCompile Include="Matrix3.cpp" />
+    <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Station.cpp" />
@@ -104,6 +107,9 @@
     <ClInclude Include="..\bootstrap\Vector4.h" />
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Matrix2.h" />
+    <ClInclude Include="Matrix3.h" />
+    <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Station.h" />
