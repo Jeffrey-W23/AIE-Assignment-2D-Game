@@ -5,8 +5,7 @@ Matrix2::Matrix2()
 	m[0] = 1;
 	m[1] = 0;
 	m[2] = 0;
-	m[3] = 1; // for three we use 9  // for four we use 16
-	// diag ones
+	m[3] = 1;
 }
 
 Matrix2::Matrix2(float Xx, float Yx, float Xy, float Yy)
@@ -14,7 +13,7 @@ Matrix2::Matrix2(float Xx, float Yx, float Xy, float Yy)
 	m[0] = Xx;
 	m[1] = Yx;
 	m[2] = Xy;
-	m[3] = Yy; //slide 5 // 
+	m[3] = Yy;
 }
 
 Matrix2::~Matrix2()
@@ -42,4 +41,34 @@ Matrix2 Matrix2::operator*(const Matrix2& rhs)
 	result.m[3] = m[2] * rhs.m[1] + m[3] * rhs.m[3];
 
 	return result;
+}
+
+// Sub-script operator returning a reference 
+Vector2& Matrix2::operator[](const int rhs)
+{
+	return *(Vector2*)(m + 2 * rhs);
+}
+
+// Cast operator to float pointer
+Matrix2::operator float*()
+{
+	return &m[0];
+}
+
+// Set Rotation
+void Matrix2::setRotate(const float a)
+{
+	m[0] = cos(a);
+	m[1] = -sin(a);
+	m[2] = sin(a);
+	m[3] = cos(a);
+}
+
+// Set Scale
+void Matrix2::setScale(const float x, const float y)
+{
+	m[0] = x;
+	m[1] = 0;
+	m[2] = 0;
+	m[3] = y;
 }

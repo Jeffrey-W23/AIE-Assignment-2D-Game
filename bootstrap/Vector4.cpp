@@ -222,3 +222,25 @@ Vector4 Vector4::operator/=(const float rhs)
 
 	return result;
 }
+
+// Sub-script operator returning a reference 
+float& Vector4::operator[](const int rhs)
+{
+	if (rhs == 0)
+		return x;
+	else if (rhs == 1)
+		return y;
+	else if (rhs == 2)
+		return z;
+	else if (rhs == 3)
+		return w;
+	else
+		return x;
+}
+
+// Cast operator to float pointer
+Vector4::operator float*()
+{
+	return &x;
+}
+

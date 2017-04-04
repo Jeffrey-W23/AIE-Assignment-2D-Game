@@ -67,6 +67,12 @@ public:
 	// Divide equels
 	Vector4 operator/=(const float rhs);
 
+	// Sub-script operator returning a reference 
+	float& operator[](const int rhs);
+
+	// Cast operator to float pointer
+	operator float*();
+
 	// declare public floats for x and y
 	float x;
 	float y;

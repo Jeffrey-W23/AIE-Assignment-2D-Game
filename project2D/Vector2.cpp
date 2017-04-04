@@ -182,3 +182,20 @@ Vector2 Vector2::operator/=(const float rhs)
 
 	return result;
 }
+
+// Sub-script operator returning a reference 
+float& Vector2::operator[](const int rhs)
+{
+	if (rhs == 0)
+		return x;
+	else if (rhs == 1)
+		return y;
+	else
+		return x;
+}
+
+// Cast operator to float pointer
+Vector2::operator float*()
+{
+	return &x;
+}

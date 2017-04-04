@@ -207,3 +207,22 @@ Vector3 Vector3::operator/=(const float rhs)
 
 	return result;
 }
+
+// Sub-script operator returning a reference 
+float& Vector3::operator[](const int rhs)
+{
+	if (rhs == 0)
+		return x;
+	else if (rhs == 1)
+		return y;
+	else if (rhs == 2)
+		return z;
+	else
+		return x;
+}
+
+// Cast operator to float pointer
+Vector3::operator float*()
+{
+	return &x;
+}
