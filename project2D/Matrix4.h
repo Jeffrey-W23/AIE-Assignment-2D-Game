@@ -6,7 +6,7 @@ class Matrix4
 {
 public:
 	Matrix4();
-	Matrix4(float Xx, float Yx, float Zx, float Tx, float Xy, float Yy, float Zy, float Ty, float Xz, float Yz, float Zz, float Tz, float Xw, float Yw, float Zw, float Tw);
+	Matrix4(float Xx, float Xy, float Xz, float Xw, float Yx, float Yy, float Yz, float Yw, float Zx, float Zy, float Zz, float Zw, float Tx, float Ty, float Tz, float Tw);
 	~Matrix4();
 
 	Vector4 operator*(const Vector4& rhs);

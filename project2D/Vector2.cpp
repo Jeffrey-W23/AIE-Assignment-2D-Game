@@ -71,7 +71,7 @@ Vector2 operator*(float lhs, const Vector2& rhs)
 }
 
 // Dot product
-float Vector2::DotProduct(const Vector2& rhs)
+float Vector2::dot(const Vector2& rhs)
 {
 	float result;
 	result = x * rhs.x + y * rhs.y;
@@ -79,7 +79,7 @@ float Vector2::DotProduct(const Vector2& rhs)
 }
 
 // Magnititude
-float Vector2::Magnititude()
+float Vector2::magnitude()
 {
 	float result;
 	result = sqrtf(x*x + y*y);
@@ -95,9 +95,9 @@ float Vector2::MagnititudeSquared()
 }
 
 // Normalise
-void Vector2::Normalise()
+void Vector2::normalise()
 {
-	float mag = Magnititude();
+	float mag = magnitude();
 
 	if (mag != 0)
 	{
@@ -109,7 +109,7 @@ void Vector2::Normalise()
 // Normalised
 Vector2 Vector2::Normalised(Vector2 data)
 {
-	float mag = data.Magnititude();
+	float mag = data.magnitude();
 
 	Vector2 result;
 

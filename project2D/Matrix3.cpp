@@ -13,16 +13,16 @@ Matrix3::Matrix3::Matrix3()
 	m[8] = 1;
 }
 
-Matrix3::Matrix3(float Xx, float Yx, float Zx, float Xy, float Yy, float Zy, float Xz, float Yz, float Zz)
+Matrix3::Matrix3(float Xx, float Xy, float Xz, float Yx, float Yy, float Yz, float Zx, float Zy, float Zz)
 {
 	m[0] = Xx;
-	m[1] = Yx;
-	m[2] = Zx;
-	m[3] = Xy;
+	m[1] = Xy;
+	m[2] = Xz;
+	m[3] = Yx;
 	m[4] = Yy;
-	m[5] = Zy;
-	m[6] = Xz;
-	m[7] = Yz;
+	m[5] = Yz;
+	m[6] = Zx;
+	m[7] = Zy;
 	m[8] = Zz;
 }
 
@@ -34,9 +34,9 @@ Vector3 Matrix3::operator*(const Vector3& rhs)
 {
 	Vector3 result;
 
-	result.x = m[0] * rhs.x + m[1] * rhs.y + m[2] * rhs.z;
-	result.y = m[3] * rhs.x + m[4] * rhs.y + m[5] * rhs.z;
-	result.z = m[6] * rhs.x + m[7] * rhs.y + m[8] * rhs.z;
+	result.x = m[0] * rhs.x + m[3] * rhs.y + m[6] * rhs.z;
+	result.y = m[1] * rhs.x + m[4] * rhs.y + m[7] * rhs.z;
+	result.z = m[2] * rhs.x + m[5] * rhs.y + m[8] * rhs.z;
 
 	return result;
 }
@@ -45,17 +45,17 @@ Matrix3 Matrix3::operator*(const Matrix3& rhs)
 {
 	Matrix3 result;
 
-	result.m[0] = m[0] * rhs.m[0] + m[1] * rhs.m[3] + m[2] * rhs.m[6];
-	result.m[1] = m[0] * rhs.m[1] + m[1] * rhs.m[4] + m[2] * rhs.m[7];
-	result.m[2] = m[0] * rhs.m[2] + m[1] * rhs.m[5] + m[2] * rhs.m[8];
+	result.m[0] = m[0] * rhs.m[0] + m[3] * rhs.m[1] + m[6] * rhs.m[2];
+	result.m[1] = m[1] * rhs.m[0] + m[4] * rhs.m[1] + m[7] * rhs.m[2]; 
+	result.m[2] = m[2] * rhs.m[0] + m[5] * rhs.m[1] + m[8] * rhs.m[2];
 
-	result.m[3] = m[3] * rhs.m[0] + m[4] * rhs.m[3] + m[5] * rhs.m[6];
-	result.m[4] = m[3] * rhs.m[1] + m[4] * rhs.m[4] + m[5] * rhs.m[7];
-	result.m[5] = m[3] * rhs.m[2] + m[4] * rhs.m[5] + m[5] * rhs.m[8];
+	result.m[3] = m[0] * rhs.m[3] + m[3] * rhs.m[4] + m[6] * rhs.m[5];
+	result.m[4] = m[1] * rhs.m[3] + m[4] * rhs.m[4] + m[7] * rhs.m[5];
+	result.m[5] = m[2] * rhs.m[3] + m[5] * rhs.m[4] + m[8] * rhs.m[5];
 
-	result.m[6] = m[6] * rhs.m[0] + m[7] * rhs.m[3] + m[8] * rhs.m[6];
-	result.m[7] = m[6] * rhs.m[1] + m[7] * rhs.m[4] + m[8] * rhs.m[7];
-	result.m[8] = m[6] * rhs.m[2] + m[7] * rhs.m[5] + m[8] * rhs.m[8];
+	result.m[6] = m[0] * rhs.m[6] + m[3] * rhs.m[7] + m[6] * rhs.m[8];
+	result.m[7] = m[1] * rhs.m[6] + m[4] * rhs.m[7] + m[7] * rhs.m[8];
+	result.m[8] = m[2] * rhs.m[6] + m[5] * rhs.m[7] + m[8] * rhs.m[8];
 
 	return result;
 }
@@ -80,9 +80,9 @@ void Matrix3::setRotateX(const float a)
 	m[2] = 0;
 	m[3] = 0;
 	m[4] = cos(a);
-	m[5] = -sin(a);
+	m[5] = sin(a);
 	m[6] = 0;
-	m[7] = sin(a);
+	m[7] = -sin(a);
 	m[8] = cos(a);
 }
 
@@ -104,9 +104,9 @@ void Matrix3::setRotateY(const float a)
 void Matrix3::setRotateZ(const float a)
 {
 	m[0] = cos(a);
-	m[1] = -sin(a);
+	m[1] = sin(a);
 	m[2] = 0;
-	m[3] = sin(a);
+	m[3] = -sin(a);
 	m[4] = cos(a);
 	m[5] = 0;
 	m[6] = 0;
@@ -133,12 +133,12 @@ void Matrix3::setPostionv(const Vector2& rhs)
 {
 	m[0] = 1;
 	m[1] = 0;
-	m[2] = rhs.x;
+	m[2] = 0;
 	m[3] = 0;
 	m[4] = 1;
-	m[5] = rhs.y;
-	m[6] = 0;
-	m[7] = 0;
+	m[5] = 0;
+	m[6] = rhs.x;
+	m[7] = rhs.y;
 	m[8] = 1;
 }
 
@@ -147,11 +147,11 @@ void Matrix3::setPostionf(const float x, const float y)
 {
 	m[0] = 1;
 	m[1] = 0;
-	m[2] = x;
+	m[2] = 0;
 	m[3] = 0;
 	m[4] = 1;
-	m[5] = y;
-	m[6] = 0;
-	m[7] = 0;
+	m[5] = 0;
+	m[6] = x;
+	m[7] = y;
 	m[8] = 1;
 }

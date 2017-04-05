@@ -6,7 +6,7 @@ class Matrix3
 {
 public:
 	Matrix3();
-	Matrix3(float Xx, float Yx, float Zx, float Xy, float Yy, float Zy, float Xz, float Yz, float Zz);
+	Matrix3(float Xx, float Xy, float Xz, float Yx, float Yy, float Yz, float Zx, float Zy, float Zz);
 	~Matrix3();
 
 	Vector3 operator*(const Vector3& rhs);
@@ -28,7 +28,7 @@ public:
 	void setRotateZ(const float a);
 
 	// Set Scale
-	void setScale(const float x, const float y, const float z);\
+	void setScale(const float x, const float y, const float z);
 
 	// Set postion taking in a vector
 	void setPostionv(const Vector2& rhs);

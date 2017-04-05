@@ -5,7 +5,7 @@ class Matrix2
 {
 public:
 	Matrix2();
-	Matrix2(float Xx, float Yx, float Xy, float Yy);
+	Matrix2(float Xx, float Xy, float Yx, float Yy);
 	~Matrix2();
 
 	Vector2 operator*(const Vector2& rhs);

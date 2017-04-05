@@ -20,24 +20,26 @@ Matrix4::Matrix4()
 	m[15] = 1;
 }
 
-Matrix4::Matrix4(float Xx, float Yx, float Zx, float Tx, float Xy, float Yy, float Zy, float Ty, float Xz, float Yz, float Zz, float Tz, float Xw, float Yw, float Zw, float Tw)
+Matrix4::Matrix4(float Xx, float Xy, float Xz, float Xw, float Yx, float Yy, float Yz, float Yw, float Zx, float Zy, float Zz, float Zw, float Tx, float Ty, float Tz, float Tw)
 {
 	m[0] = Xx;
-	m[1] = Yx;
-	m[2] = Zx;
-	m[3] = Tx;
+	m[1] = Xy;
+	m[2] = Xz;
+	m[3] = Xw;
 
-	m[4] = Xy;
+	m[4] = Yx;
 	m[5] = Yy;
-	m[6] = Zy;
-	m[7] = Ty;
-	m[8] = Xz;
-	m[9] = Yz;
+	m[6] = Yz;
+	m[7] = Yw;
+
+	m[8] = Zx;
+	m[9] = Zy;
 	m[10] = Zz;
-	m[11] = Tz;
-	m[12] = Xw;
-	m[13] = Yw;
-	m[14] = Zw;
+	m[11] = Zw;
+
+	m[12] = Tx;
+	m[13] = Ty;
+	m[14] = Tz;
 	m[15] = Tw;
 }
 
@@ -50,10 +52,10 @@ Vector4 Matrix4::operator*(const Vector4& rhs)
 {
 	Vector4 result;
 
-	result.x = m[0] * rhs.x + m[1] * rhs.y + m[2] * rhs.z + m[3] * rhs.w;
-	result.y = m[4] * rhs.x + m[5] * rhs.y + m[6] * rhs.z + m[7] * rhs.w;
-	result.z = m[8] * rhs.x + m[9] * rhs.y + m[10] * rhs.z + m[11] * rhs.w;
-	result.w = m[12] * rhs.x + m[13] * rhs.y + m[14] * rhs.z + m[15] * rhs.w;
+	result.x = m[0] * rhs.x + m[4] * rhs.y + m[8] * rhs.z + m[12] * rhs.w;
+	result.y = m[1] * rhs.x + m[5] * rhs.y + m[9] * rhs.z + m[13] * rhs.w;
+	result.z = m[2] * rhs.x + m[6] * rhs.y + m[10] * rhs.z + m[14] * rhs.w;
+	result.w = m[3] * rhs.x + m[7] * rhs.y + m[11] * rhs.z + m[15] * rhs.w;
 
 	return result;
 }
@@ -62,25 +64,25 @@ Matrix4 Matrix4::operator*(const Matrix4& rhs)
 {
 	Matrix4 result;
 
-	result.m[0] = m[0] * rhs.m[0] + m[1] * rhs.m[4] + m[2] * rhs.m[8] + m[3] * rhs.m[12];
-	result.m[1] = m[0] * rhs.m[1] + m[1] * rhs.m[5] + m[2] * rhs.m[9] + m[3] * rhs.m[13];
-	result.m[2] = m[0] * rhs.m[2] + m[1] * rhs.m[6] + m[2] * rhs.m[10] + m[3] * rhs.m[14];
-	result.m[3] = m[0] * rhs.m[3] + m[1] * rhs.m[7] + m[2] * rhs.m[11] + m[3] * rhs.m[15];
+	result.m[0] = m[0] * rhs.m[0] + m[4] * rhs.m[1] + m[8] * rhs.m[2] + m[12] * rhs.m[3];
+	result.m[1] = m[1] * rhs.m[0] + m[5] * rhs.m[1] + m[9] * rhs.m[2] + m[13] * rhs.m[3];
+	result.m[2] = m[2] * rhs.m[0] + m[6] * rhs.m[1] + m[10] * rhs.m[2] + m[14] * rhs.m[3];
+	result.m[3] = m[3] * rhs.m[0] + m[7] * rhs.m[1] + m[11] * rhs.m[2] + m[15] * rhs.m[3];
 
-	result.m[4] = m[4] * rhs.m[0] + m[5] * rhs.m[4] + m[6] * rhs.m[8] + m[7] * rhs.m[12];
-	result.m[5] = m[4] * rhs.m[1] + m[5] * rhs.m[5] + m[6] * rhs.m[9] + m[7] * rhs.m[13];
-	result.m[6] = m[4] * rhs.m[2] + m[5] * rhs.m[6] + m[6] * rhs.m[10] + m[7] * rhs.m[14];
-	result.m[7] = m[4] * rhs.m[3] + m[5] * rhs.m[7] + m[6] * rhs.m[11] + m[7] * rhs.m[15];
+	result.m[4] = m[0] * rhs.m[4] + m[4] * rhs.m[5] + m[8] * rhs.m[6] + m[12] * rhs.m[7];
+	result.m[5] = m[1] * rhs.m[4] + m[5] * rhs.m[5] + m[9] * rhs.m[6] + m[13] * rhs.m[7];
+	result.m[6] = m[2] * rhs.m[4] + m[6] * rhs.m[5] + m[10] * rhs.m[6] + m[14] * rhs.m[7];
+	result.m[7] = m[3] * rhs.m[4] + m[7] * rhs.m[5] + m[11] * rhs.m[6] + m[15] * rhs.m[7];
 
-	result.m[8] = m[8] * rhs.m[0] + m[9] * rhs.m[4] + m[10] * rhs.m[8] + m[11] * rhs.m[12];
-	result.m[9] = m[8] * rhs.m[1] + m[9] * rhs.m[5] + m[10] * rhs.m[9] + m[11] * rhs.m[13];
-	result.m[10] = m[8] * rhs.m[2] + m[9] * rhs.m[6] + m[10] * rhs.m[10] + m[11] * rhs.m[14];
-	result.m[11] = m[8] * rhs.m[3] + m[9] * rhs.m[7] + m[10] * rhs.m[11] + m[11] * rhs.m[15];
+	result.m[8] = m[0] * rhs.m[8] + m[4] * rhs.m[9] + m[8] * rhs.m[10] + m[12] * rhs.m[11]; // put wrong thing here but said was right
+	result.m[9] = m[1] * rhs.m[8] + m[5] * rhs.m[9] + m[9] * rhs.m[10] + m[13] * rhs.m[11];
+	result.m[10] = m[2] * rhs.m[8] + m[6] * rhs.m[9] + m[10] * rhs.m[10] + m[14] * rhs.m[11];
+	result.m[11] = m[3] * rhs.m[8] + m[7] * rhs.m[9] + m[11] * rhs.m[10] + m[15] * rhs.m[11];
 
-	result.m[12] = m[12] * rhs.m[0] + m[13] * rhs.m[4] + m[14] * rhs.m[8] + m[15] * rhs.m[12];
-	result.m[13] = m[12] * rhs.m[1] + m[13] * rhs.m[5] + m[14] * rhs.m[9] + m[15] * rhs.m[13];
-	result.m[14] = m[12] * rhs.m[2] + m[13] * rhs.m[6] + m[14] * rhs.m[10] + m[15] * rhs.m[14];
-	result.m[15] = m[12] * rhs.m[3] + m[13] * rhs.m[7] + m[14] * rhs.m[11] + m[15] * rhs.m[15];
+	result.m[12] = m[0] * rhs.m[12] + m[4] * rhs.m[13] + m[8] * rhs.m[14] + m[12] * rhs.m[15];
+	result.m[13] = m[1] * rhs.m[12] + m[5] * rhs.m[13] + m[9] * rhs.m[14] + m[13] * rhs.m[15];
+	result.m[14] = m[2] * rhs.m[12] + m[6] * rhs.m[13] + m[10] * rhs.m[14] + m[14] * rhs.m[15];
+	result.m[15] = m[3] * rhs.m[12] + m[7] * rhs.m[13] + m[11] * rhs.m[14] + m[15] * rhs.m[15];
 
 	return result;
 }
@@ -106,10 +108,10 @@ void Matrix4::setRotateX(const float a)
 	m[3] = 0;
 	m[4] = 0;
 	m[5] = cos(a);
-	m[6] = -sin(a);
+	m[6] = sin(a);
 	m[7] = 0;
 	m[8] = 0;
-	m[9] = sin(a);
+	m[9] = -sin(a);
 	m[10] = cos(a);
 	m[11] = 0;
 	m[12] = 0;
@@ -143,17 +145,17 @@ void Matrix4::setRotateY(const float a)
 void Matrix4::setRotateZ(const float a)
 {
 	m[0] = cos(a);
-	m[1] = -sin(a);
+	m[1] = sin(a);
 	m[2] = 0;
 	m[3] = 0;
-	m[4] = sin(a);
+	m[4] = -sin(a);
 	m[5] = cos(a);
 	m[6] = 0;
 	m[7] = 0;
 	m[8] = 0;
 	m[9] = 0;
-	m[10] = 0;
-	m[11] = 1;
+	m[10] = 1;
+	m[11] = 0;
 	m[12] = 0;
 	m[13] = 0;
 	m[14] = 0;
@@ -187,18 +189,18 @@ void Matrix4::setPostionv(const Vector3& rhs)
 	m[0] = 1;
 	m[1] = 0;
 	m[2] = 0;
-	m[3] = rhs.x;
+	m[3] = 0;
 	m[4] = 0;
 	m[5] = 1;
 	m[6] = 0;
-	m[7] = rhs.y;
+	m[7] = 0;
 	m[8] = 0;
 	m[9] = 0;
 	m[10] = 1;
-	m[11] = rhs.z;
-	m[12] = 0;
-	m[13] = 0;
-	m[14] = 0;
+	m[11] = 0;
+	m[12] = rhs.x;
+	m[13] = rhs.y;
+	m[14] = rhs.z;
 	m[15] = 1;
 }
 
@@ -208,17 +210,17 @@ void Matrix4::setPostionf(const float x, const float y, const float z)
 	m[0] = 1;
 	m[1] = 0;
 	m[2] = 0;
-	m[3] = x;
+	m[3] = 0;
 	m[4] = 0;
 	m[5] = 1;
 	m[6] = 0;
-	m[7] = y;
+	m[7] = 0;
 	m[8] = 0;
 	m[9] = 0;
 	m[10] = 1;
-	m[11] = z;
-	m[12] = 0;
-	m[13] = 0;
-	m[14] = 0;
+	m[11] = 0;
+	m[12] = x;
+	m[13] = y;
+	m[14] = z;
 	m[15] = 1;
 }

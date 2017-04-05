@@ -29,16 +29,16 @@ public:
 	Vector2 operator*(const float rhs);
 	
 	// Dot product
-	float DotProduct(const Vector2& rhs);
+	float dot(const Vector2& rhs);
 
 	// Magnititude
-	float Magnititude();
+	float magnitude();
 
 	// Magnititude Squared
 	float MagnititudeSquared();
 
 	// Normalise
-	void Normalise();
+	void normalise();
 
 	// Normalised
 	static Vector2 Normalised(Vector2 data);
