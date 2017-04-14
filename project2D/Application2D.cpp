@@ -1,10 +1,4 @@
 #include "Application2D.h"
-#include "Texture.h"
-#include "Font.h"
-#include "Input.h"
-#include "Vector2.h"
-
-using namespace aie;
 
 Application2D::Application2D() 
 {
@@ -19,12 +13,10 @@ Application2D::~Application2D()
 bool Application2D::startup() 
 {
 	m_2dRenderer = new Renderer2D();
-
 	m_shipTexture = new Texture("./textures/LargeShip.png");
-
 	m_font = new Font("./font/consolas.ttf", 32);
-
 	m_audio = new Audio("./audio/powerup.wav");
+	player = new Player();
 
 	m_cameraX = 0;
 	m_cameraY = 0;
@@ -35,6 +27,8 @@ bool Application2D::startup()
 
 void Application2D::shutdown() 
 {
+	delete player;
+
 	delete m_audio;
 	delete m_font;
 	delete m_shipTexture;
@@ -44,30 +38,31 @@ void Application2D::shutdown()
 void Application2D::update(float deltaTime) 
 {
 	m_timer += deltaTime;
+	player->Update(deltaTime);
 
-	// input example
-	Input* input = Input::getInstance();
+	//// input example
+	//Input* input = Input::getInstance();
 
-	// use arrow keys to move camera
-	if (input->isKeyDown(INPUT_KEY_UP))
-		m_cameraY += 500.0f * deltaTime;
+	//// use arrow keys to move camera
+	//if (input->isKeyDown(INPUT_KEY_UP))
+	//	m_cameraY += 500.0f * deltaTime;
 
-	if (input->isKeyDown(INPUT_KEY_DOWN))
-		m_cameraY -= 500.0f * deltaTime;
+	//if (input->isKeyDown(INPUT_KEY_DOWN))
+	//	m_cameraY -= 500.0f * deltaTime;
 
-	if (input->isKeyDown(INPUT_KEY_LEFT))
-		m_cameraX -= 500.0f * deltaTime;
+	//if (input->isKeyDown(INPUT_KEY_LEFT))
+	//	m_cameraX -= 500.0f * deltaTime;
 
-	if (input->isKeyDown(INPUT_KEY_RIGHT))
-		m_cameraX += 500.0f * deltaTime;
+	//if (input->isKeyDown(INPUT_KEY_RIGHT))
+	//	m_cameraX += 500.0f * deltaTime;
 
-	// example of audio
-	if (input->wasKeyPressed(INPUT_KEY_SPACE))
-		m_audio->play();
+	//// example of audio
+	//if (input->wasKeyPressed(INPUT_KEY_SPACE))
+	//	m_audio->play();
 
-	// exit the application
-	if (input->isKeyDown(INPUT_KEY_ESCAPE))
-		quit();
+	//// exit the application
+	//if (input->isKeyDown(INPUT_KEY_ESCAPE))
+	//	quit();
 }
 
 void Application2D::draw() 
@@ -80,6 +75,8 @@ void Application2D::draw()
 
 	// begin drawing sprites
 	m_2dRenderer->begin();
+
+	player->Draw(m_2dRenderer);
 
 	// demonstrate spinning sprite
 	m_2dRenderer->setUVRect(0,0,1,1);
@@ -101,10 +98,10 @@ void Application2D::draw()
 	m_2dRenderer->drawSprite(nullptr, 400, 400, 50, 50, 3.14159f * 0.25f, 1);
 	
 	// output some text, uses the last used colour
-	char fps[32];
+	/*char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
 	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
-	m_2dRenderer->drawText(m_font, "Press Space for sound!", 0, 720 - 64);
+	m_2dRenderer->drawText(m_font, "Press Space for sound!", 0, 720 - 64);*/
 
 	// done drawing sprites
 	m_2dRenderer->end();
