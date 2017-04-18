@@ -3,7 +3,7 @@
 Player::Player()
 {
 	playerTexture = new Texture("./textures/LargeShip.png");
-	rotSpeed = 3.14f;
+	rotSpeed = 0.42f;
 	speed = 100.0f;
 	rot = 0;
 
