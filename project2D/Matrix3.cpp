@@ -79,35 +79,35 @@ void Matrix3::setRotateX(const float a)
 	m[1] = 0;
 	m[2] = 0;
 	m[3] = 0;
-	m[4] = cos(a);
-	m[5] = sin(a);
+	m[4] = cosf(a);
+	m[5] = sinf(a);
 	m[6] = 0;
-	m[7] = -sin(a);
-	m[8] = cos(a);
+	m[7] = -sinf(a);
+	m[8] = cosf(a);
 }
 
 // Set Rotation Y
 void Matrix3::setRotateY(const float a)
 {
-	m[0] = cos(a);
+	m[0] = cosf(a);
 	m[1] = 0;
-	m[2] = -sin(a);
+	m[2] = -sinf(a);
 	m[3] = 0;
 	m[4] = 1;
 	m[5] = 0;
-	m[6] = sin(a);
+	m[6] = sinf(a);
 	m[7] = 0;
-	m[8] = cos(a);
+	m[8] = cosf(a);
 }
 
 // Set Rotation Z
 void Matrix3::setRotateZ(const float a)
 {
-	m[0] = cos(a);
-	m[1] = sin(a);
+	m[0] = cosf(a);
+	m[1] = sinf(a);
 	m[2] = 0;
-	m[3] = -sin(a);
-	m[4] = cos(a);
+	m[3] = -sinf(a);
+	m[4] = cosf(a);
 	m[5] = 0;
 	m[6] = 0;
 	m[7] = 0;

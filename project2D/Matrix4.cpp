@@ -107,12 +107,12 @@ void Matrix4::setRotateX(const float a)
 	m[2] = 0;
 	m[3] = 0;
 	m[4] = 0;
-	m[5] = cos(a);
-	m[6] = sin(a);
+	m[5] = cosf(a);
+	m[6] = sinf(a);
 	m[7] = 0;
 	m[8] = 0;
-	m[9] = -sin(a);
-	m[10] = cos(a);
+	m[9] = -sinf(a);
+	m[10] = cosf(a);
 	m[11] = 0;
 	m[12] = 0;
 	m[13] = 0;
@@ -123,17 +123,17 @@ void Matrix4::setRotateX(const float a)
 // Set Rotation Y
 void Matrix4::setRotateY(const float a)
 {
-	m[0] = cos(a);
+	m[0] = cosf(a);
 	m[1] = 0;
-	m[2] = -sin(a);
+	m[2] = -sinf(a);
 	m[3] = 0;
 	m[4] = 0;
 	m[5] = 1;
 	m[6] = 0;
 	m[7] = 0;
-	m[8] = sin(a);
+	m[8] = sinf(a);
 	m[9] = 0;
-	m[10] = cos(a);
+	m[10] = cosf(a);
 	m[11] = 0;
 	m[12] = 0;
 	m[13] = 0;
@@ -144,12 +144,12 @@ void Matrix4::setRotateY(const float a)
 // Set Rotation Z
 void Matrix4::setRotateZ(const float a)
 {
-	m[0] = cos(a);
-	m[1] = sin(a);
+	m[0] = cosf(a);
+	m[1] = sinf(a);
 	m[2] = 0;
 	m[3] = 0;
-	m[4] = -sin(a);
-	m[5] = cos(a);
+	m[4] = -sinf(a);
+	m[5] = cosf(a);
 	m[6] = 0;
 	m[7] = 0;
 	m[8] = 0;

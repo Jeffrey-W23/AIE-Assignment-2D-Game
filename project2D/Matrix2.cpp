@@ -58,10 +58,10 @@ Matrix2::operator float*()
 // Set Rotation
 void Matrix2::setRotate(const float a)
 {
-	m[0] = cos(a);
-	m[1] = sin(a);
-	m[2] = -sin(a);
-	m[3] = cos(a);
+	m[0] = cosf(a);
+	m[1] = sinf(a);
+	m[2] = -sinf(a);
+	m[3] = cosf(a);
 }
 
 // Set Scale

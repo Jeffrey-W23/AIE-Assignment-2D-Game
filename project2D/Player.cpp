@@ -2,9 +2,12 @@
 
 Player::Player()
 {
-	playerTexture = new Texture("./textures/ship.png");
+	playerTexture = new Texture("./textures/LargeShip.png");
 	rotSpeed = 3.14f;
 	speed = 100.0f;
+	rot = 0;
+
+	CollisionManager::GetInstance()->AddObject(this);
 }
 
 Player::~Player()
@@ -13,7 +16,9 @@ Player::~Player()
 
 void Player::Draw(Renderer2D* renderer2D)
 {
-	renderer2D->setCameraPos(GlobalTrasform[2][0] - 640, GlobalTrasform[2][1] - 360);
+	//renderer2D->setCameraPos(GlobalTrasform[2][0] - 640, GlobalTrasform[2][1] - 360);
+	renderer2D->setCameraPos(GlobalTrasform[2][0], GlobalTrasform[2][1]);
+	renderer2D->setRotation(rot);
 	renderer2D->begin();
 	renderer2D->drawSpriteTransformed3x3(playerTexture, localTransform);
 }
@@ -25,9 +30,8 @@ void Player::Update(float deltaTime)
 
 	Vector2 pos;
 	Matrix3 temp;
-	float rot = 0;
 	Matrix3 tempRotation;
-
+	float shiprot = 0;
 	// use arrow keys to move camera
 	if (input->isKeyDown(INPUT_KEY_W))
 		pos.y = speed * deltaTime;
@@ -42,16 +46,27 @@ void Player::Update(float deltaTime)
 		pos.x = speed * deltaTime;
 
 	if (input->isKeyDown(INPUT_KEY_A))
-		rot = rotSpeed * deltaTime;
+		shiprot -= rotSpeed * deltaTime;
 
 	if (input->isKeyDown(INPUT_KEY_D))
-		rot -= rotSpeed * deltaTime;
+		shiprot += rotSpeed * deltaTime;
 
-	tempRotation.setRotateZ(rot);
+	tempRotation.setRotateZ(-shiprot);
+	rot += shiprot;
 	localTransform = localTransform * tempRotation;
 
 	temp.setPostionv(pos);
 	localTransform = localTransform * temp;
 
 	updateGlobalTransform();
+
+	// Test Collision
+	CollisionManager* pCollision = CollisionManager::GetInstance();
+
+	bool colliding = pCollision->TestCollision(this);
+
+	if (colliding)
+	{
+		cout << "HIT!" << endl;
+	}
 }

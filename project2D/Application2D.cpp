@@ -12,6 +12,8 @@ Application2D::~Application2D()
 
 bool Application2D::startup() 
 {
+	CollisionManager::Create();
+
 	m_2dRenderer = new Renderer2D();
 	m_shipTexture = new Texture("./textures/LargeShip.png");
 	m_font = new Font("./font/consolas.ttf", 32);
@@ -27,6 +29,8 @@ bool Application2D::startup()
 
 void Application2D::shutdown() 
 {
+	CollisionManager::Destory();
+
 	delete player;
 
 	delete m_audio;

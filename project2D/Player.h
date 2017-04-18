@@ -4,6 +4,9 @@
 #include "Matrix3.h"
 #include "Texture.h"
 #include "Input.h"
+#include "CollisionManager.h"
+#include <iostream>
+using namespace std;
 using namespace aie;
 
 class Player : public Entity
@@ -20,4 +23,5 @@ public:
 
 	float rotSpeed;
 	float speed;
+	float rot;
 };

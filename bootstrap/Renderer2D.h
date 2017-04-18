@@ -45,6 +45,7 @@ public:
 	// specify the camera position
 	void setCameraPos(float x, float y) { m_cameraX = x; m_cameraY = y; }
 	void getCameraPos(float& x, float& y) const { x = m_cameraX; y = m_cameraY; }
+	void setRotation(float rot) { rotation = rot; }
 
 	// returns the width in pixels for the given text.
 	// this is usefull for center alligning text.
@@ -62,6 +63,7 @@ protected:
 
 	// the camera position
 	float				m_cameraX, m_cameraY;
+	float				rotation;
 
 	// texture handling
 	enum { TEXTURE_STACK_SIZE = 16 };
