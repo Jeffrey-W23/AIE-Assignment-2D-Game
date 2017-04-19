@@ -12,16 +12,9 @@ using namespace aie;
 class Player : public Entity
 {
 public:
-	Player();
+	Player(char textureUrl[32]);
 	~Player();
 
 	void Update(float deltaTime);
-	void Draw(aie::Renderer2D* renderer2D);
-
-	Texture* playerTexture;
-	Renderer2D* renderer2D;
-
-	float rotSpeed;
-	float speed;
-	float rot;
+	void Draw(Renderer2D* renderer2D);
 };

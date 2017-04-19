@@ -18,7 +18,7 @@ bool Application2D::startup()
 	m_shipTexture = new Texture("./textures/LargeShip.png");
 	m_font = new Font("./font/consolas.ttf", 32);
 	m_audio = new Audio("./audio/powerup.wav");
-	player = new Player();
+	player = new Player("LargeShip");
 
 	m_cameraX = 0;
 	m_cameraY = 0;

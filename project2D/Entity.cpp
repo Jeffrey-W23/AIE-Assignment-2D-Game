@@ -1,11 +1,18 @@
 #include "Entity.h"
 
-Entity::Entity()
+Entity::Entity(char textureUrl[32])
 {
 	Parent = nullptr;
 
 	m_Collider.m_TL = Vector2(-30, -30);
 	m_Collider.m_BR = Vector2(30, 30);
+
+	char tempChar[32];
+	strcpy(tempChar, "./textures/");
+	strcat(tempChar, textureUrl);
+	strcat(tempChar, ".png");
+
+	texture = new Texture(textureUrl);
 }
 
 Entity::~Entity()
@@ -52,4 +59,14 @@ Vector2 Entity::GetPosition()
 	pos.y = GlobalTrasform.m[7];
 
 	return pos;
+}
+
+void Entity::Update(float deltaTime)
+{
+
+}
+
+void Entity::Draw(Renderer2D* renderer2D)
+{
+	renderer2D->drawSpriteTransformed3x3(texture, localTransform);
 }

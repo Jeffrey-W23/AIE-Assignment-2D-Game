@@ -156,16 +156,21 @@ void Renderer2D::begin() {
 	
 	glUseProgram(m_shader);
 
-	auto projection = glm::ortho(0.0f, 0.0f + (float)width, 0.0f, 0.0f + (float)height, 1.0f, -101.0f);
-	//auto projection = glm::ortho(m_cameraX, m_cameraX + (float)width, m_cameraY, m_cameraY + (float)height, 1.0f, -101.0f);
+	//auto projection = glm::ortho(0.0f, 0.0f + (float)width, 0.0f, 0.0f + (float)height, 1.0f, -101.0f);
 	
-	glm::highp_mat4 rot;
+
+	//Local
+	auto projection = glm::ortho(m_cameraX, m_cameraX + (float)width, m_cameraY, m_cameraY + (float)height, 1.0f, -101.0f);
+
+	//Cameras local * players global
+	
+	/*glm::highp_mat4 rot;
 	rot = glm::rotate(rot, rotation, glm::tvec3<float>(0, 0, 1));
 
 	glm::highp_mat4 pos;
 	pos = glm::translate(pos, glm::tvec3<float>(-m_cameraX, -m_cameraY, 0));
 
-	projection = projection * rot * pos;
+	projection = projection * pos * rot;*/
 	glUniformMatrix4fv(glGetUniformLocation(m_shader, "projectionMatrix"), 1, false, &projection[0][0]);
 
 	glEnable(GL_BLEND);
