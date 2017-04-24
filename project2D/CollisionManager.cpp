@@ -39,7 +39,7 @@ void CollisionManager::RemoveObject(Entity* pObject)
 	m_CollisionList.erase(iter);
 }
 
-bool CollisionManager::TestCollision(Entity* pObject)
+Entity* CollisionManager::TestCollision(Entity* pObject)
 {
 	for (int i = 0; i < m_CollisionList.size(); ++i)
 	{
@@ -58,9 +58,9 @@ bool CollisionManager::TestCollision(Entity* pObject)
 		// Test if two AABBs are overlapping
 		if (collider1.m_BR > collider2.m_TL && collider1.m_TL < collider2.m_BR)
 		{
-			return true;
+			return m_CollisionList[i];
 		}
 	}
 
-	return false;
+	return nullptr;
 }

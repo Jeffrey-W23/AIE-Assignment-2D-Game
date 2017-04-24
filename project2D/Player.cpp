@@ -7,63 +7,13 @@ Player::Player(char textureUrl[32]) : Entity(textureUrl)
 	// Body
 	collider->AddObject(this);
 
-	// Head
-	Entity* Head = new Entity("Head");
-	Head->setParent(this);
-	setChild(Head);
-	collider->AddObject(Head);
-
 	//ARMS
 	// LeftTopArm
-	Entity* LeftTopArm = new Entity("LeftTop");
+	/*Entity* LeftTopArm = new Entity("arm");
 	LeftTopArm->setParent(this);
 	this->setChild(LeftTopArm);
 	collider->AddObject(LeftTopArm);
-
-	// LeftBottomArm
-	Entity* LeftBottomArm = new Entity("LeftBottom");
-	LeftBottomArm->setParent(LeftTopArm);
-	LeftTopArm->setChild(LeftBottomArm);
-	collider->AddObject(LeftBottomArm);
-
-	// RightTopArm
-	Entity* RightTopArm = new Entity("RightTopArm");
-	RightTopArm->setParent(this);
-	this->setChild(RightTopArm);
-	collider->AddObject(RightTopArm);
-
-	// RightBottomArm
-	Entity* RightBottomArm = new Entity("LeftBottom");
-	RightBottomArm->setParent(RightTopArm);
-	RightTopArm->setChild(RightBottomArm);
-	collider->AddObject(RightBottomArm);
-	//ARMS
-
-	// LEGS
-	// LeftTopLeg
-	Entity* LeftTopLeg = new Entity("LeftTop");
-	LeftTopLeg->setParent(this);
-	this->setChild(LeftTopLeg);
-	collider->AddObject(LeftTopLeg);
-
-	// LeftBottomLeg
-	Entity* LeftBottomLeg = new Entity("LeftBottom");
-	LeftBottomLeg->setParent(LeftTopLeg);
-	LeftTopLeg->setChild(LeftBottomLeg);
-	collider->AddObject(LeftBottomLeg);
-
-	// RightTopLeg
-	Entity* RightTopLeg = new Entity("RightTopArm");
-	RightTopLeg->setParent(this);
-	this->setChild(RightTopLeg);
-	collider->AddObject(RightTopLeg);
-
-	// RightBottomLeg
-	Entity* RightBottomLeg = new Entity("LeftBottom");
-	RightBottomLeg->setParent(RightTopLeg);
-	RightTopLeg->setChild(RightBottomLeg);
-	collider->AddObject(RightBottomLeg);
-	// LEGS
+	LeftTopArm->SetPosition(-15, 0);*/
 }
 
 Player::~Player()
@@ -75,6 +25,7 @@ void Player::Draw(Renderer2D* renderer2D)
 	renderer2D->setCameraPos(GlobalTrasform[2][0] - 640, GlobalTrasform[2][1] - 360);
 	renderer2D->begin();
 
+	Entity::Draw(renderer2D);
 }
 
 void Player::Update(float deltaTime)

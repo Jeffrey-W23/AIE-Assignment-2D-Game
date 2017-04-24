@@ -13,7 +13,7 @@ public:
 	static void Destory();
 	void AddObject(Entity* pObject);
 	void RemoveObject(Entity* pObject);
-	bool TestCollision(Entity* pObject);
+	Entity* TestCollision(Entity* pObject);
 
 private:
 	CollisionManager();

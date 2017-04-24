@@ -22,6 +22,8 @@ public:
 	Collider& GetCollider();
 	Vector2 GetPosition();
 
+	void SetPosition(float x, float y);
+
 	virtual void Update(float deltaTime);
 	virtual void Draw(Renderer2D* renderer2D);
 

@@ -12,7 +12,7 @@ Entity::Entity(char textureUrl[32])
 	strcat(tempChar, textureUrl);
 	strcat(tempChar, ".png");
 
-	texture = new Texture(textureUrl);
+	texture = new Texture(tempChar);
 }
 
 Entity::~Entity()
@@ -61,6 +61,14 @@ Vector2 Entity::GetPosition()
 	return pos;
 }
 
+void Entity::SetPosition(float x, float y)
+{
+	localTransform.m[6] = x;
+	localTransform.m[7] = y;
+
+	updateGlobalTransform();
+}
+
 void Entity::Update(float deltaTime)
 {
 
@@ -68,5 +76,5 @@ void Entity::Update(float deltaTime)
 
 void Entity::Draw(Renderer2D* renderer2D)
 {
-	renderer2D->drawSpriteTransformed3x3(texture, localTransform);
+	renderer2D->drawSpriteTransformed3x3(texture, GlobalTrasform);
 }
