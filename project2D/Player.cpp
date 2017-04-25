@@ -4,7 +4,7 @@ Player::Player(char textureUrl[32]) : Entity(textureUrl)
 {
 	CollisionManager* collider = CollisionManager::GetInstance();
 
-	// Body
+	// Create the collider for the player
 	collider->AddObject(this);
 
 	//ARMS
