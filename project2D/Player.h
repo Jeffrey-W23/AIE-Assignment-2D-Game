@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "Input.h"
 #include "CollisionManager.h"
+#include "turret.h"
 #include <iostream>
 using namespace std;
 using namespace aie;
@@ -17,4 +18,7 @@ public:
 
 	void Update(float deltaTime);
 	void Draw(Renderer2D* renderer2D);
+
+	float rotSpeed;
+	turret* Turret;
 };

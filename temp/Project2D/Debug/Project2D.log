@@ -1,26 +1,2 @@
-﻿  main.cpp
-  Vector4.cpp
-  Vector3.cpp
-  Vector2.cpp
-  Player.cpp
-  Matrix4.cpp
-  Matrix3.cpp
-  Matrix2.cpp
-  Entity.cpp
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(11): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(12): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(13): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(43): warning C4018: '<': signed/unsigned mismatch
-  CollisionManager.cpp
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(44): warning C4018: '<': signed/unsigned mismatch
-  Application2D.cpp
-  Generating Code...
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\vector2.cpp(123): warning C4715: 'Vector2::Normalised': not all control paths return a value
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\vector3.cpp(143): warning C4715: 'Vector3::Normalised': not all control paths return a value
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\vector4.cpp(153): warning C4715: 'Vector4::Normalised': not all control paths return a value
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Project2D.vcxproj -> C:\Users\Thomas Wiltshire\Desktop\Pc\GitHub\AIE-Assignment-2D-Game\temp\Project2D\Debug\Project2D.exe
-  Project2D.vcxproj -> C:\Users\Thomas Wiltshire\Desktop\Pc\GitHub\AIE-Assignment-2D-Game\temp\Project2D\Debug\Project2D.pdb (Full PDB)
+﻿  turret.cpp
+  Project2D.vcxproj -> C:\Users\s171043\Documents\GitHub\AIE-Assignment-2D-Game\temp\Project2D\Debug\Project2D.exe

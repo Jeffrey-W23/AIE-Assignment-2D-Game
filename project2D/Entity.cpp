@@ -77,4 +77,9 @@ void Entity::Update(float deltaTime)
 void Entity::Draw(Renderer2D* renderer2D)
 {
 	renderer2D->drawSpriteTransformed3x3(texture, GlobalTrasform);
+
+	for (int i = 0; i < children.size(); i++)
+	{
+		children[i]->Draw(renderer2D);
+	}
 }

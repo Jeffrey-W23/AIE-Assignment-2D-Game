@@ -7,13 +7,11 @@ Player::Player(char textureUrl[32]) : Entity(textureUrl)
 	// Create the collider for the player
 	collider->AddObject(this);
 
-	//ARMS
-	// LeftTopArm
-	/*Entity* LeftTopArm = new Entity("arm");
-	LeftTopArm->setParent(this);
-	this->setChild(LeftTopArm);
-	collider->AddObject(LeftTopArm);
-	LeftTopArm->SetPosition(-15, 0);*/
+	Turret = new turret("rock_large");
+	Turret->setParent(this);
+	this->setChild(Turret);
+
+	rotSpeed = 3.14f;
 }
 
 Player::~Player()
@@ -35,6 +33,8 @@ void Player::Update(float deltaTime)
 
 	Vector2 pos;
 	Matrix3 temp;
+	Matrix3 rottemp;
+	float rot = 0;
 
 	// use arrow keys to move camera
 	if (input->isKeyDown(INPUT_KEY_W))
@@ -49,12 +49,22 @@ void Player::Update(float deltaTime)
 	if (input->isKeyDown(INPUT_KEY_E))
 		pos.x = 50 * deltaTime;
 
+	if (input->isKeyDown(INPUT_KEY_A))
+		rot = rotSpeed * deltaTime;
+
+	if (input->isKeyDown(INPUT_KEY_D))
+		rot = -rotSpeed * deltaTime;
+
+	rottemp.setRotateZ(rot);
 	temp.setPostionv(pos);
+
+	localTransform = localTransform * rottemp;
 	localTransform = localTransform * temp;
 
 	updateGlobalTransform();
 
-	
+	Turret->Update(deltaTime);
+
 	// Test Collision
 	/*CollisionManager* pCollision = CollisionManager::GetInstance();
 
