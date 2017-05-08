@@ -13,7 +13,7 @@ using namespace aie;
 class Player : public Entity
 {
 public:
-	Player(char textureUrl[32]);
+	Player(char* textureUrl);
 	~Player();
 
 	void Update(float deltaTime);

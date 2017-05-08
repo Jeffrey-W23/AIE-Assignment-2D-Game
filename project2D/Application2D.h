@@ -8,6 +8,7 @@
 #include "Input.h"
 #include "Vector2.h"
 #include "Player.h"
+#include "Map.h"
 #include "CollisionManager.h"
 using namespace aie;
 
@@ -34,4 +35,5 @@ protected:
 	float m_timer;
 
 	Player* player;
+	Map* map;
 };

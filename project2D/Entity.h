@@ -15,7 +15,7 @@ class Entity
 public:
 
 	// Default Constructor
-	Entity(char textureUrl[32]);
+	Entity(char* textureUrl);
 	
 	// Default Destructor
 	~Entity();

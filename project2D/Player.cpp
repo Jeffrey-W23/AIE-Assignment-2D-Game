@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(char textureUrl[32]) : Entity(textureUrl)
+Player::Player(char* textureUrl) : Entity(textureUrl)
 {
 	CollisionManager* collider = CollisionManager::GetInstance();
 
@@ -42,12 +42,6 @@ void Player::Update(float deltaTime)
 
 	if (input->isKeyDown(INPUT_KEY_S))
 		pos.y = -50 * deltaTime;
-
-	if (input->isKeyDown(INPUT_KEY_Q))
-		pos.x = -50 * deltaTime;
-
-	if (input->isKeyDown(INPUT_KEY_E))
-		pos.x = 50 * deltaTime;
 
 	if (input->isKeyDown(INPUT_KEY_A))
 		rot = rotSpeed * deltaTime;

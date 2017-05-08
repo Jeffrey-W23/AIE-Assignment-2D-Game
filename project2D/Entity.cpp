@@ -1,18 +1,24 @@
 #include "Entity.h"
 
-Entity::Entity(char textureUrl[32])
+Entity::Entity(char* textureUrl)
 {
 	Parent = nullptr;
 
 	m_Collider.m_TL = Vector2(-30, -30);
 	m_Collider.m_BR = Vector2(30, 30);
 
-	char tempChar[32];
-	strcpy(tempChar, "./textures/");
-	strcat(tempChar, textureUrl);
-	strcat(tempChar, ".png");
-
-	texture = new Texture(tempChar);
+	if (textureUrl != nullptr)
+	{
+		char tempChar[32];
+		strcpy(tempChar, "./textures/");
+		strcat(tempChar, textureUrl);
+		strcat(tempChar, ".png");
+		texture = new Texture(tempChar);
+	}
+	else
+	{
+		texture = nullptr;
+	}
 }
 
 Entity::~Entity()
@@ -76,7 +82,10 @@ void Entity::Update(float deltaTime)
 
 void Entity::Draw(Renderer2D* renderer2D)
 {
-	renderer2D->drawSpriteTransformed3x3(texture, GlobalTrasform);
+	if (texture)
+	{
+		renderer2D->drawSpriteTransformed3x3(texture, GlobalTrasform);
+	}
 
 	for (int i = 0; i < children.size(); i++)
 	{

@@ -20,6 +20,7 @@ bool Application2D::startup()
 	m_audio = new Audio("./audio/powerup.wav");
 	
 	player = new Player("LargeShip");
+	map = new Map();
 
 	m_cameraX = 0;
 	m_cameraY = 0;
@@ -33,6 +34,7 @@ void Application2D::shutdown()
 	CollisionManager::Destory();
 
 	delete player;
+	delete map;
 
 	delete m_audio;
 	delete m_font;
@@ -80,8 +82,10 @@ void Application2D::draw()
 
 	// begin drawing sprites
 	m_2dRenderer->begin();
-
+	
 	player->Draw(m_2dRenderer);
+
+	map->Draw(m_2dRenderer);
 
 	// demonstrate spinning sprite
 	m_2dRenderer->setUVRect(0,0,1,1);
@@ -99,8 +103,8 @@ void Application2D::draw()
 	m_2dRenderer->drawBox(600, 500, 60, 20, m_timer);
 
 	// draw a slightly rotated sprite with no texture, coloured yellow
-	m_2dRenderer->setRenderColour(1, 1, 0, 1);
-	m_2dRenderer->drawSprite(nullptr, 400, 400, 50, 50, 3.14159f * 0.25f, 1);
+	/*m_2dRenderer->setRenderColour(1, 1, 0, 1);
+	m_2dRenderer->drawSprite(nullptr, 400, 400, 50, 50, 3.14159f * 0.25f, 1);*/
 	
 	// output some text, uses the last used colour
 	/*char fps[32];

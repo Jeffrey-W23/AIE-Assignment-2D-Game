@@ -1,9 +1,13 @@
 #include "turret.h"
 
-turret::turret(char textureUrl[32]) : Entity(textureUrl)
+turret::turret(char* textureUrl) : Entity(textureUrl)
 {
 	CollisionManager* collider = CollisionManager::GetInstance();
 	collider->AddObject(this);
+
+	antenna = new Antenna("rock_large");
+	antenna->setParent(this);
+	this->setChild(antenna);
 
 	rotSpeed = 3.14f;
 }
@@ -20,16 +24,18 @@ void turret::Update(float deltaTime)
 	Matrix3 rottemp;
 	float rot = 0;
 
-	if (input->isKeyDown(INPUT_KEY_Z))
+	if (input->isKeyDown(INPUT_KEY_E))
 		rot = rotSpeed * deltaTime;
 
-	if (input->isKeyDown(INPUT_KEY_X))
+	if (input->isKeyDown(INPUT_KEY_Q))
 		rot = -rotSpeed * deltaTime;
 
 	rottemp.setRotateZ(rot);
 	localTransform = localTransform * rottemp;
 
 	updateGlobalTransform();
+
+	antenna->Update(deltaTime);
 
 
 	// Test Collision
