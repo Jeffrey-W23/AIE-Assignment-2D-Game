@@ -71,29 +71,30 @@ Entity* CollisionManager::TestSphereBoxCollision(Entity* pObject)
 {
 	for (int i = 0; i < m_CollisionList.size(); ++i)
 	{
-		// PUT IF HERE TO CHECK IF TYPE "THIS"
+		// PUT IF HERE TO CHECK IF TYPE "THIS" // DIDNT WORK
+		//if (pObject->GetType() != PLAYER)
+		//{
+			// Calculate AABB
+			Collider collider1 = m_CollisionList[i]->GetCollider();
+			collider1.m_TL += m_CollisionList[i]->GetPosition();
+			collider1.m_BR += m_CollisionList[i]->GetPosition();
 
+			// Calculate AABB
+			Collider collider2 = pObject->GetCollider();
+			Vector2 pos = pObject->GetPosition();
+			float rad = collider2.m_rad;
 
-		// Calculate AABB
-		Collider collider1 = m_CollisionList[i]->GetCollider();
-		collider1.m_TL += m_CollisionList[i]->GetPosition();
-		collider1.m_BR += m_CollisionList[i]->GetPosition();
+			// Calculate Circle
+			Vector2 A = pos.Clamp(collider1.m_TL, collider1.m_BR);
+			Vector2 V = A - pos;
+			float VMag = V.magnitude();
 
-		// Calculate AABB
-		Collider collider2 = pObject->GetCollider();
-		Vector2 pos = pObject->GetPosition();
-		float rad = collider2.m_rad;
-
-		// Calculate Circle
-		Vector2 A = pos.Clamp(collider1.m_TL, collider1.m_BR);
-		Vector2 V = A - pos;
-		float VMag = V.magnitude();
-
-		// Test if two AABBs are overlapping
-		if (VMag <= rad * rad)
-		{
- 			return m_CollisionList[i];
-		}
+			// Test if two AABBs are overlapping
+			if (VMag <= rad * rad)
+			{
+				return m_CollisionList[i];
+			}
+		//}
 	}
 
 	return nullptr;
