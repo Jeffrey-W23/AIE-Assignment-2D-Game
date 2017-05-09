@@ -92,3 +92,14 @@ void Entity::Draw(Renderer2D* renderer2D)
 		children[i]->Draw(renderer2D);
 	}
 }
+
+
+void Entity::SetType(Types types)
+{
+	this->types = types;
+}
+
+Types Entity::GetType()
+{
+	return types;
+}

@@ -20,7 +20,9 @@ public:
 	void RemoveObject(Entity* pObject);
 	
 	// Test collision
-	Entity* TestCollision(Entity* pObject);
+	Entity* TestBoxBoxCollision(Entity* pObject);
+	Entity* TestSphereBoxCollision(Entity* pObject);
+	Entity* TestSphereSphereCollision(Vector2 pos1, Vector2 pos2, float rad1, float rad2);
 
 private:
 	// Constructor and destructor

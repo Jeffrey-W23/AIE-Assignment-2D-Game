@@ -12,6 +12,7 @@ Player::Player(char* textureUrl) : Entity(textureUrl)
 	this->setChild(Turret);
 
 	rotSpeed = 3.14f;
+	this->SetType(PLAYER);
 }
 
 Player::~Player()
@@ -24,6 +25,8 @@ void Player::Draw(Renderer2D* renderer2D)
 	renderer2D->begin();
 
 	Entity::Draw(renderer2D);
+
+	//renderer2D->drawBox(GetPosition().x, GetPosition().y, m_Collider.m_BR.x * 2, m_Collider.m_BR.y * 2);
 }
 
 void Player::Update(float deltaTime)
@@ -38,10 +41,10 @@ void Player::Update(float deltaTime)
 
 	// use arrow keys to move camera
 	if (input->isKeyDown(INPUT_KEY_W))
-		pos.y = 50 * deltaTime;
+		pos.y = 150 * deltaTime;
 
 	if (input->isKeyDown(INPUT_KEY_S))
-		pos.y = -50 * deltaTime;
+		pos.y = -150 * deltaTime;
 
 	if (input->isKeyDown(INPUT_KEY_A))
 		rot = rotSpeed * deltaTime;
@@ -60,12 +63,12 @@ void Player::Update(float deltaTime)
 	Turret->Update(deltaTime);
 
 	// Test Collision
-	/*CollisionManager* pCollision = CollisionManager::GetInstance();
+	CollisionManager* pCollision = CollisionManager::GetInstance();
 
-	bool colliding = pCollision->TestCollision(this);
+	Entity* colliding = pCollision->TestBoxBoxCollision(this);
 
-	if (colliding)
+	if (colliding != nullptr && colliding->GetType() == WALL)
 	{
 		cout << "HIT!" << endl;
-	}*/
+	}
 }

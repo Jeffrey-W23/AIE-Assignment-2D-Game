@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Input.h"
 #include "Antenna.h"
-#include "CollisionManager.h"
+#include "Bullet.h"
 
 class turret : public Entity
 {
@@ -11,8 +11,11 @@ public:
 	~turret();
 
 	void Update(float deltaTime);
-	/*void Draw(Renderer2D* renderer2D);*/
+	void Draw(Renderer2D* renderer2D);
 
 	float rotSpeed;
 	Antenna* antenna;
+	Bullet* bullets[15];
+
+	int bulletCount;
 };

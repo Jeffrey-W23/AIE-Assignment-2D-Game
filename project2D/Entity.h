@@ -9,6 +9,13 @@
 using namespace std;
 using namespace aie;
 
+enum Types
+{
+	BULLET,
+	WALL,
+	PLAYER
+};
+
 // Entity Object
 class Entity
 {
@@ -34,6 +41,10 @@ public:
 	// Set postion
 	void SetPosition(float x, float y);
 
+	// Setter and getter for type
+	void SetType(Types types);
+	Types GetType();
+
 	// Update and draw function
 	virtual void Update(float deltaTime);
 	virtual void Draw(Renderer2D* renderer2D);
@@ -53,4 +64,6 @@ protected:
 
 	// texture
 	Texture* texture;
+
+	Types types;
 };

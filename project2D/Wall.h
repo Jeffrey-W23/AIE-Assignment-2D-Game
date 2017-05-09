@@ -11,6 +11,5 @@ public:
 	void Update(float deltaTime);
 	void Draw(Renderer2D* renderer2D);
 
-	Vector2 pos;
 	Vector2 size;
 };
