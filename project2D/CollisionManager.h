@@ -22,7 +22,9 @@ public:
 	// Test collision
 	Entity* TestBoxBoxCollision(Entity* pObject);
 	Entity* TestSphereBoxCollision(Entity* pObject);
-	Entity* TestSphereSphereCollision(Vector2 pos1, Vector2 pos2, float rad1, float rad2);
+	/*Entity* TestSphereSphereCollision(Vector2 pos1, Vector2 pos2, float rad1, float rad2);*/
+	Vector2 Bounce(Entity* pObject, Vector2 dir, Vector2 pos);
+
 
 private:
 	// Constructor and destructor

@@ -99,6 +99,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="rect.cpp" />
     <ClCompile Include="turret.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
@@ -111,6 +112,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="rect.h" />
     <ClInclude Include="turret.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>

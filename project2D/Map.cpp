@@ -2,10 +2,10 @@
 
 Map::Map()
 {
-	wall1 = new Wall(nullptr, Vector2(0, -100), Vector2(1000, 25));
-	wall2 = new Wall(nullptr, Vector2(0, 400), Vector2(1000, 25));
-	wall3 = new Wall(nullptr, Vector2(-487, 150), Vector2(25, 500));
-	wall4 = new Wall(nullptr, Vector2(488, 150), Vector2(25, 500));
+	wall1 = new Wall(nullptr, Vector2(0, -100), Vector2(50, 50));
+	wall2 = new Wall(nullptr, Vector2(0, 400), Vector2(50, 50));
+	wall3 = new Wall(nullptr, Vector2(-487, 150), Vector2(50, 50));
+	wall4 = new Wall(nullptr, Vector2(488, 150), Vector2(50, 50));
 }
 
 Map::~Map()

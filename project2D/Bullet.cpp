@@ -50,6 +50,10 @@ void Bullet::Update(float deltaTime)
 
 	if (colliding != nullptr && colliding->GetType() == WALL)
 	{
+
+		//colliding->GetCollider
 		cout << "BULLET!" << endl;
+
+ 		dir = pCollision->Bounce(colliding, dir, GetPosition());
 	}
 }

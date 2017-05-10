@@ -1,4 +1,5 @@
 #include "CollisionManager.h"
+#include <math.h>
 
 CollisionManager* CollisionManager::m_Instance = nullptr;
 
@@ -71,45 +72,30 @@ Entity* CollisionManager::TestSphereBoxCollision(Entity* pObject)
 {
 	for (int i = 0; i < m_CollisionList.size(); ++i)
 	{
+		if (pObject == m_CollisionList[i])
+			continue;
+
 		// PUT IF HERE TO CHECK IF TYPE "THIS" // DIDNT WORK
-		//if (pObject->GetType() != PLAYER)
-		//{
-			// Calculate AABB
-			Collider collider1 = m_CollisionList[i]->GetCollider();
-			collider1.m_TL += m_CollisionList[i]->GetPosition();
-			collider1.m_BR += m_CollisionList[i]->GetPosition();
+		if (pObject->GetType() == m_CollisionList[i]->GetType())
+			continue;
+		
+		// Calculate AABB
+		Collider collider1 = m_CollisionList[i]->GetCollider();
+		collider1.m_TL += m_CollisionList[i]->GetPosition();
+		collider1.m_BR += m_CollisionList[i]->GetPosition();
 
-			// Calculate AABB
-			Collider collider2 = pObject->GetCollider();
-			Vector2 pos = pObject->GetPosition();
-			float rad = collider2.m_rad;
+		// Calculate AABB
+		Collider collider2 = pObject->GetCollider();
+		Vector2 pos = pObject->GetPosition();
+		float rad = collider2.m_rad;
 
-			// Calculate Circle
-			Vector2 A = pos.Clamp(collider1.m_TL, collider1.m_BR);
-			Vector2 V = A - pos;
-			float VMag = V.magnitude();
-
-			// Test if two AABBs are overlapping
-			if (VMag <= rad * rad)
-			{
-				return m_CollisionList[i];
-			}
-		//}
-	}
-
-	return nullptr;
-}
-
-// test 2 circles
-Entity* CollisionManager::TestSphereSphereCollision(Vector2 pos1, Vector2 pos2, float rad1, float rad2)
-{
-	for (int i = 0; i < m_CollisionList.size(); ++i)
-	{
-		Vector2 V = pos1 - pos2;
+		// Calculate Circle
+		Vector2 A = pos.Clamp(collider1.m_TL, collider1.m_BR);
+		Vector2 V = A - pos;
 		float VMag = V.magnitude();
 
-		// Test
-		if (VMag <= (rad1 * rad2) * (rad1 * rad2))
+		// Test if two AABBs are overlapping
+		if (VMag <= rad * rad)
 		{
 			return m_CollisionList[i];
 		}
@@ -117,3 +103,36 @@ Entity* CollisionManager::TestSphereSphereCollision(Vector2 pos1, Vector2 pos2, 
 
 	return nullptr;
 }
+
+//collider of wall, dir of bullet
+Vector2 CollisionManager::Bounce(Entity* pObject, Vector2 dir, Vector2 pos)
+{
+	Vector2 result;
+	result = pos - pObject->GetPosition();
+
+	if (fabsf(result.x) > fabsf(result.y))
+		result.y = 0;
+	else
+		result.x = 0;
+	
+	Vector2 normal = Vector2::Normalised(result);
+	return dir - 2 * dir.dot(normal) * normal;
+}
+
+// test 2 circles
+//Entity* CollisionManager::TestSphereSphereCollision(Vector2 pos1, Vector2 pos2, float rad1, float rad2)
+//{
+//	for (int i = 0; i < m_CollisionList.size(); ++i)
+//	{
+//		Vector2 V = pos1 - pos2;
+//		float VMag = V.magnitude();
+//
+//		// Test
+//		if (VMag <= (rad1 * rad2) * (rad1 * rad2))
+//		{
+//			return m_CollisionList[i];
+//		}
+//	}
+//
+//	return nullptr;
+//}

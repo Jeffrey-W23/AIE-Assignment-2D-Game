@@ -1,8 +1,7 @@
-﻿  Player.cpp
-  CollisionManager.cpp
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(45): warning C4018: '<': signed/unsigned mismatch
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(72): warning C4018: '<': signed/unsigned mismatch
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(106): warning C4018: '<': signed/unsigned mismatch
+﻿  rect.cpp
+  Player.cpp
+  main.cpp
+  Application2D.cpp
   Generating Code...
-  Project2D.vcxproj -> C:\Users\Thomas Wiltshire\Desktop\Pc\GitHub\AIE-Assignment-2D-Game\temp\Project2D\Debug\Project2D.exe
-  Project2D.vcxproj -> C:\Users\Thomas Wiltshire\Desktop\Pc\GitHub\AIE-Assignment-2D-Game\temp\Project2D\Debug\Project2D.pdb (Full PDB)
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Project2D.vcxproj -> C:\Users\s171043\Documents\GitHub\AIE-Assignment-2D-Game\temp\Project2D\Debug\Project2D.exe

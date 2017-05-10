@@ -2,17 +2,19 @@
 
 Player::Player(char* textureUrl) : Entity(textureUrl)
 {
-	//CollisionManager* collider = CollisionManager::GetInstance();
+	CollisionManager* collider = CollisionManager::GetInstance();
 
 	// Create the collider for the player
-	//collider->AddObject(this);
+	collider->AddObject(this);
 
 	Turret = new turret("rock_large");
 	Turret->setParent(this);
 	this->setChild(Turret);
 
 	rotSpeed = 3.14f;
-	//this->SetType(PLAYER);
+	this->SetType(PLAYER);
+
+	
 }
 
 Player::~Player()
@@ -63,12 +65,16 @@ void Player::Update(float deltaTime)
 	Turret->Update(deltaTime);
 
 	// Test Collision
-	//CollisionManager* pCollision = CollisionManager::GetInstance();
+	CollisionManager* pCollision = CollisionManager::GetInstance();
 
-	//Entity* colliding = pCollision->TestBoxBoxCollision(this);
+	Entity* colliding = pCollision->TestBoxBoxCollision(this);
 
-	//if (colliding != nullptr && colliding->GetType() == WALL)
-	//{
-		//cout << "HIT!" << endl;
-	//}
+	if (colliding != nullptr && colliding->GetType() == WALL)
+	{
+		cout << "HIT!" << endl;
+		
+		// basically how decoupling works
+		//this->setParent(nullptr);
+		//Turret->setChild();
+	}
 }
