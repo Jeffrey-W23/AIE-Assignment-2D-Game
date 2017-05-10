@@ -6,7 +6,6 @@
 #include "Input.h"
 #include "CollisionManager.h"
 #include "turret.h"
-#include "rect.h"
 #include <iostream>
 using namespace std;
 using namespace aie;
@@ -22,7 +21,4 @@ public:
 
 	float rotSpeed;
 	turret* Turret;
-
-private:
-	rect boundingBox;
 };

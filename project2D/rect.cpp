@@ -6,18 +6,21 @@ rect::rect()
 	pos.y = 0;
 	size.x = 0;
 	size.y = 0;
+	UpdateVertices();
 }
 
-rect::rect(Vector3 _size) : rect()
+rect::rect(Vector2 _size) : rect()
 {
 	pos.x = 0;
 	pos.y = 0;
 	size = _size;
+	UpdateVertices();
 }
 
-rect::rect(Vector3 _pos, Vector3 _size) : rect(_size)
+rect::rect(Vector2 _pos, Vector2 _size) : rect(_size)
 {
 	pos = _pos;
+	UpdateVertices();
 }
 
 rect::~rect()
@@ -25,19 +28,22 @@ rect::~rect()
 
 }
 
-void rect::MoveBy(Vector3 by)
+void rect::MoveBy(Vector2 by)
 {
 	pos = pos + by;
+	UpdateVertices();
 }
 
-void rect::MoveTo(Vector3 to)
+void rect::MoveTo(Vector2 to)
 {
 	pos = to;
+	UpdateVertices();
 }
 
-void rect::SetSize(Vector3 _size)
+void rect::SetSize(Vector2 _size)
 {
 	size = _size;
+	UpdateVertices();
 }
 
 void rect::UpdateVertices()

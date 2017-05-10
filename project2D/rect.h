@@ -1,27 +1,27 @@
 #pragma once
-#include "Vector3.h"
+#include "Vector2.h"
 
 class rect
 {
 public:
 	rect();
-	rect(Vector3 _size);
-	rect(Vector3 _pos, Vector3 _size);
+	rect(Vector2 _size);
+	rect(Vector2 _pos, Vector2 _size);
 	~rect();
 
-	void MoveBy(Vector3 by);
-	void MoveTo(Vector3 To);
-	void SetSize(Vector3 _size);
+	void MoveBy(Vector2 by);
+	void MoveTo(Vector2 To);
+	void SetSize(Vector2 _size);
 
-	Vector3 UpperLeft;
-	Vector3 UpperRight;
-	Vector3 LowerLeft;
-	Vector3 LowerRight;
+	Vector2 UpperLeft;
+	Vector2 UpperRight;
+	Vector2 LowerLeft;
+	Vector2 LowerRight;
 
 private:
 	void UpdateVertices();
 
-	Vector3 pos;
-	Vector3 size;
+	Vector2 pos;
+	Vector2 size;
 };
 

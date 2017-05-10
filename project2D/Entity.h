@@ -6,6 +6,7 @@
 #include "Collider.h"
 #include "Renderer2D.h"
 #include "Texture.h"
+#include "rect.h"
 using namespace std;
 using namespace aie;
 
@@ -45,6 +46,10 @@ public:
 	void SetType(Types types);
 	Types GetType();
 
+	// IsColliding function
+	bool IsColliding(Entity* a, Entity* b);
+	Vector2 Project(Vector2& a, Vector2& b);
+
 	// Update and draw function
 	virtual void Update(float deltaTime);
 	virtual void Draw(Renderer2D* renderer2D);
@@ -65,5 +70,9 @@ protected:
 	// texture
 	Texture* texture;
 
+	// Bounding box
+	rect boundingBox;
+
+	// what type is the object
 	Types types;
 };
