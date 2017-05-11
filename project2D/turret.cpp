@@ -54,7 +54,15 @@ void turret::Update(float deltaTime)
 		// decoupling
 		antenna->LocalToGlobal();
 		antenna->setParent(nullptr);
-		children.clear();
+		//this->setChild();
+		children.clear(); // When I take this out it works?
+	}
+
+	if (input->isKeyDown(INPUT_KEY_RIGHT_SHIFT))
+	{
+		// coupling
+		antenna->setParent(this);
+		this->setChild(antenna);
 	}
 
 	for (int i = 0; i < 15; i++)

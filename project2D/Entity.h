@@ -14,7 +14,8 @@ enum Types
 {
 	BULLET,
 	WALL,
-	PLAYER
+	PLAYER,
+	ANTENNA
 };
 
 // Entity Object
@@ -46,15 +47,15 @@ public:
 	void SetType(Types types);
 	Types GetType();
 
-	// IsColliding function
-	static bool IsColliding(Entity* a, Entity* b);
-	static Vector3 Project(Vector3& a, Vector3& b);
-
+	// Change localtranform to globaltransform
 	void LocalToGlobal();
 
 	// Update and draw function
 	virtual void Update(float deltaTime);
 	virtual void Draw(Renderer2D* renderer2D);
+
+	// Bounding box
+	rect boundingBox;
 
 protected:
 
@@ -71,9 +72,6 @@ protected:
 
 	// texture
 	Texture* texture;
-
-	// Bounding box
-	rect boundingBox;
 
 	// what type is the object
 	Types types;

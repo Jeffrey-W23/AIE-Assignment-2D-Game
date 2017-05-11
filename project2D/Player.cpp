@@ -27,22 +27,6 @@ void Player::Draw(Renderer2D* renderer2D)
 	renderer2D->begin();
 
 	Entity::Draw(renderer2D);
-	//renderer2D->drawBox(GetPosition().x, GetPosition().y, m_Collider.m_BR.x * 2, m_Collider.m_BR.y * 2);
-	
-	//------// draw it? player bounding box //------//
-	//renderer2D->drawLine(-100, -100, 100, 100, 10, 0);
-	//renderer2D->drawLine(boundingBox.LowerLeft.x, boundingBox.LowerLeft.y, boundingBox.UpperRight.x, boundingBox.UpperRight.y, 10, 0);
-	/*renderer2D->drawBox(boundingBox.LowerRight.x, boundingBox.LowerRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
-
-	renderer2D->drawBox(boundingBox.LowerRight.x, boundingBox.LowerRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
-	renderer2D->drawBox(boundingBox.UpperRight.x, boundingBox.UpperRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
-
-	renderer2D->drawBox(boundingBox.UpperRight.x, boundingBox.UpperRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
-	renderer2D->drawBox(boundingBox.UpperLeft.x, boundingBox.UpperLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
-
-	renderer2D->drawBox(boundingBox.UpperLeft.x, boundingBox.UpperLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
-	renderer2D->drawBox(boundingBox.LowerLeft.x, boundingBox.LowerLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);*/
-	//------// draw it? player bounding box //------//
 }
 
 void Player::Update(float deltaTime)
