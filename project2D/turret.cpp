@@ -49,6 +49,14 @@ void turret::Update(float deltaTime)
 		}
 	}
 
+	if (input->isKeyDown(INPUT_KEY_LEFT_SHIFT))
+	{
+		// decoupling
+		antenna->LocalToGlobal();
+		antenna->setParent(nullptr);
+		children.clear();
+	}
+
 	for (int i = 0; i < 15; i++)
 	{
 		bullets[i]->Update(deltaTime);

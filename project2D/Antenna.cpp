@@ -3,6 +3,12 @@
 Antenna::Antenna(char* textureUrl) : Entity(textureUrl)
 {
 	rotSpeed = 3.14f;
+
+	Matrix3 temppos;
+	temppos.setPostionf(0, 0);
+
+	localTransform = localTransform * temppos;
+	updateGlobalTransform();
 }
 
 Antenna::~Antenna()

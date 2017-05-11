@@ -48,20 +48,25 @@ Entity* CollisionManager::TestBoxBoxCollision(Entity* pObject)
 		if (pObject == m_CollisionList[i])
 			continue;
 
-		// Calculate AABB of our two objects
-		Collider collider1 = pObject->GetCollider();
-		collider1.m_TL += pObject->GetPosition();
-		collider1.m_BR += pObject->GetPosition();
-
-		Collider collider2 = m_CollisionList[i]->GetCollider();
-		collider2.m_TL += m_CollisionList[i]->GetPosition();
-		collider2.m_BR += m_CollisionList[i]->GetPosition();
-	
-		// Test if two AABBs are overlapping
-		if (collider1.m_BR > collider2.m_TL && collider1.m_TL < collider2.m_BR)
+		if (Entity::IsColliding(pObject, m_CollisionList[i]))
 		{
 			return m_CollisionList[i];
 		}
+
+		// Calculate AABB of our two objects
+		//Collider collider1 = pObject->GetCollider();
+		//collider1.m_TL += pObject->GetPosition();
+		//collider1.m_BR += pObject->GetPosition();
+
+		//Collider collider2 = m_CollisionList[i]->GetCollider();
+		//collider2.m_TL += m_CollisionList[i]->GetPosition();
+		//collider2.m_BR += m_CollisionList[i]->GetPosition();
+	
+		//// Test if two AABBs are overlapping
+		//if (collider1.m_BR > collider2.m_TL && collider1.m_TL < collider2.m_BR)
+		//{
+		//	return m_CollisionList[i];
+		//}
 	}
 
 	return nullptr;

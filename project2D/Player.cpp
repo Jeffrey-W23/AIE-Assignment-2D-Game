@@ -30,8 +30,9 @@ void Player::Draw(Renderer2D* renderer2D)
 	//renderer2D->drawBox(GetPosition().x, GetPosition().y, m_Collider.m_BR.x * 2, m_Collider.m_BR.y * 2);
 	
 	//------// draw it? player bounding box //------//
-	renderer2D->drawBox(boundingBox.LowerLeft.x, boundingBox.LowerLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y *2);
-	renderer2D->drawBox(boundingBox.LowerRight.x, boundingBox.LowerRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
+	//renderer2D->drawLine(-100, -100, 100, 100, 10, 0);
+	//renderer2D->drawLine(boundingBox.LowerLeft.x, boundingBox.LowerLeft.y, boundingBox.UpperRight.x, boundingBox.UpperRight.y, 10, 0);
+	/*renderer2D->drawBox(boundingBox.LowerRight.x, boundingBox.LowerRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
 
 	renderer2D->drawBox(boundingBox.LowerRight.x, boundingBox.LowerRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
 	renderer2D->drawBox(boundingBox.UpperRight.x, boundingBox.UpperRight.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
@@ -40,7 +41,7 @@ void Player::Draw(Renderer2D* renderer2D)
 	renderer2D->drawBox(boundingBox.UpperLeft.x, boundingBox.UpperLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
 
 	renderer2D->drawBox(boundingBox.UpperLeft.x, boundingBox.UpperLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
-	renderer2D->drawBox(boundingBox.LowerLeft.x, boundingBox.LowerLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);
+	renderer2D->drawBox(boundingBox.LowerLeft.x, boundingBox.LowerLeft.y, boundingBox.UpperRight.x * 2, boundingBox.UpperRight.y * 2);*/
 	//------// draw it? player bounding box //------//
 }
 
@@ -70,24 +71,12 @@ void Player::Update(float deltaTime)
 	rottemp.setRotateZ(rot);
 	temp.setPostionv(pos);
 
-	//------// rotate? player bounding box //------//
-	boundingBox.UpperLeft.x = *rottemp;
-	boundingBox.UpperLeft.y = *rottemp;
-
-	boundingBox.UpperRight.x = *rottemp;
-	boundingBox.UpperRight.y = *rottemp;
-
-	boundingBox.LowerLeft.x = *rottemp;
-	boundingBox.LowerLeft.y = *rottemp;
-
-	boundingBox.LowerRight.x = *rottemp;
-	boundingBox.LowerRight.y = *rottemp;
-	//------// rotate? player bounding box //------//
-
 	localTransform = localTransform * rottemp;
 	localTransform = localTransform * temp;
 
 	updateGlobalTransform();
+	boundingBox.MoveTo(CastTo<Vector3>(GetPosition()));
+	boundingBox.RotateBy(rottemp);
 
 	Turret->Update(deltaTime);
 
@@ -99,9 +88,5 @@ void Player::Update(float deltaTime)
 	if (colliding != nullptr && colliding->GetType() == WALL)
 	{
 		cout << "HIT!" << endl;
-		
-		// basically how decoupling works
-		//this->setParent(nullptr);
-		//Turret->setChild();
 	}
 }

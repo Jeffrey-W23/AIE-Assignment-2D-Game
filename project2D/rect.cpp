@@ -6,21 +6,21 @@ rect::rect()
 	pos.y = 0;
 	size.x = 0;
 	size.y = 0;
-	UpdateVertices();
+	CalcVertices();
 }
 
-rect::rect(Vector2 _size) : rect()
+rect::rect(Vector3 _size) : rect()
 {
 	pos.x = 0;
 	pos.y = 0;
 	size = _size;
-	UpdateVertices();
+	CalcVertices();
 }
 
-rect::rect(Vector2 _pos, Vector2 _size) : rect(_size)
+rect::rect(Vector3 _pos, Vector3 _size) : rect(_size)
 {
 	pos = _pos;
-	UpdateVertices();
+	CalcVertices();
 }
 
 rect::~rect()
@@ -28,35 +28,51 @@ rect::~rect()
 
 }
 
-void rect::MoveBy(Vector2 by)
+void rect::MoveBy(Vector3 by)
 {
 	pos = pos + by;
 	UpdateVertices();
 }
 
-void rect::MoveTo(Vector2 to)
+void rect::MoveTo(Vector3 to)
 {
 	pos = to;
 	UpdateVertices();
 }
 
-void rect::SetSize(Vector2 _size)
+void rect::RotateBy(Matrix3 by)
+{
+	rot = rot * by;
+	UpdateVertices();
+}
+
+void rect::SetSize(Vector3 _size)
 {
 	size = _size;
+	CalcVertices();
+}
+
+void rect::CalcVertices()
+{
+	OriginalLowerLeft.x = ((-size.x / 2));
+	OriginalLowerLeft.y = ((-size.y / 2));
+
+	OriginalLowerRight.x = ((size.x / 2));
+	OriginalLowerRight.y = ((-size.y / 2));
+
+	OriginalUpperLeft.x = ((-size.x / 2));
+	OriginalUpperLeft.y = ((size.y / 2));
+
+	OriginalUpperRight.x = ((size.x / 2));
+	OriginalUpperRight.y = ((size.y / 2));
+	
 	UpdateVertices();
 }
 
 void rect::UpdateVertices()
 {
-	LowerLeft.x = (pos.x - (size.x / 2));
-	LowerLeft.y = (pos.y - (size.y / 2));
-
-	LowerRight.x = (pos.x + (size.x / 2));
-	LowerRight.y = (pos.y - (size.y / 2));
-
-	UpperLeft.x = (pos.x - (size.x / 2));
-	UpperLeft.y = (pos.y + (size.y / 2));
-
-	UpperRight.x = (pos.x + (size.x / 2));
-	UpperRight.y = (pos.y + (size.y / 2));
+	LowerLeft = (rot * OriginalLowerLeft) + pos;
+	LowerRight = (rot * OriginalLowerRight) + pos;
+	UpperLeft = (rot * OriginalUpperLeft) + pos;
+	UpperRight = (rot * OriginalUpperRight) + pos;
 }

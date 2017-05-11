@@ -47,8 +47,10 @@ public:
 	Types GetType();
 
 	// IsColliding function
-	bool IsColliding(Entity* a, Entity* b);
-	Vector2 Project(Vector2& a, Vector2& b);
+	static bool IsColliding(Entity* a, Entity* b);
+	static Vector3 Project(Vector3& a, Vector3& b);
+
+	void LocalToGlobal();
 
 	// Update and draw function
 	virtual void Update(float deltaTime);

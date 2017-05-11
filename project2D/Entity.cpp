@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include <vector>
+#include "VectorCast.h"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ Entity::Entity(char* textureUrl)
 	m_Collider.m_TL = Vector2(-30, -30);
 	m_Collider.m_BR = Vector2(30, 30);
 
-	boundingBox.SetSize(Vector2(-60, -60));
+	boundingBox.SetSize(Vector3(-60, -60, 0));
 
 	if (textureUrl != nullptr)
 	{
@@ -85,12 +86,19 @@ void Entity::Update(float deltaTime)
 
 }
 
+void Entity::LocalToGlobal()
+{
+	localTransform = GlobalTrasform;
+}
+
 void Entity::Draw(Renderer2D* renderer2D)
 {
 	if (texture)
 	{
 		renderer2D->drawSpriteTransformed3x3(texture, GlobalTrasform);
 	}
+
+	renderer2D->drawLine(boundingBox.LowerLeft.x, boundingBox.LowerLeft.y, boundingBox.UpperRight.x, boundingBox.UpperRight.y, 10, 0);
 
 	for (int i = 0; i < children.size(); i++)
 	{
@@ -130,9 +138,9 @@ Types Entity::GetType()
 
 
 // SAT
-Vector2 Entity::Project(Vector2& a, Vector2& b)
+Vector3 Entity::Project(Vector3& a, Vector3& b)
 {
-	Vector2 result;
+	Vector3 result;
 
 	result.x = a.dot(b) / ((float)pow(b.x, 2) + (float)pow(b.y, 2)) * b.x;
 	result.y = a.dot(b) / ((float)pow(b.x, 2) + (float)pow(b.y, 2)) * b.y;
@@ -175,27 +183,30 @@ bool Entity::IsColliding(Entity* a, Entity* b)
 	rect rcA = a->boundingBox;
 	rect rcB = b->boundingBox;
 
-	Vector2 aUR = rcA.UpperRight + a->GetPosition();
-	Vector2 aUL = rcA.UpperLeft + a->GetPosition();
-	Vector2 aLR = rcA.LowerRight + a->GetPosition();
-	Vector2 aLL = rcA.LowerLeft + a->GetPosition();
+	Vector3 posa = CastTo<Vector3>(a->GetPosition());
+	Vector3 posb = CastTo<Vector3>(b->GetPosition());
 
-	Vector2 bUR = rcB.UpperRight + b->GetPosition();
-	Vector2 bUL = rcB.UpperLeft + b->GetPosition();
-	Vector2 bLR = rcB.LowerRight + b->GetPosition();
-	Vector2 bLL = rcB.LowerLeft + b->GetPosition();
+	Vector3 aUR = rcA.UpperRight + posa;
+	Vector3 aUL = rcA.UpperLeft + posa;
+	Vector3 aLR = rcA.LowerRight + posa;
+	Vector3 aLL = rcA.LowerLeft + posa;
+
+	Vector3 bUR = rcB.UpperRight + posb;
+	Vector3 bUL = rcB.UpperLeft + posb;
+	Vector3 bLR = rcB.LowerRight + posb;
+	Vector3 bLL = rcB.LowerLeft + posb;
 
 	float aMax = 0;
 	float aMin = 0;
 	float bMax = 0;
 	float bMin = 0;
 
-	Vector2 a1 = aUR - aUL;
-	Vector2 a2 = aUR - aLR;
-	Vector2 a3 = bUL - bLL;
-	Vector2 a4 = bUL - bUR;
+	Vector3 a1 = aUR - aUL;
+	Vector3 a2 = aUR - aLR;
+	Vector3 a3 = bUL - bLL;
+	Vector3 a4 = bUL - bUR;
 
-	vector<Vector2> axes;
+	vector<Vector3> axes;
 	axes.push_back(a1);
 	axes.push_back(a2);
 	axes.push_back(a3);
@@ -203,15 +214,15 @@ bool Entity::IsColliding(Entity* a, Entity* b)
 
 	for (int i = 0; i  < axes.size(); i++)
 	{
-		Vector2 aURProj = Project(aUR, axes[i]);
-		Vector2 aULProj = Project(aUL, axes[i]);
-		Vector2 aLRProj = Project(aLR, axes[i]);
-		Vector2 aLLProj = Project(aLL, axes[i]);
+		Vector3 aURProj = Project(aUR, axes[i]);
+		Vector3 aULProj = Project(aUL, axes[i]);
+		Vector3 aLRProj = Project(aLR, axes[i]);
+		Vector3 aLLProj = Project(aLL, axes[i]);
 		
-		Vector2 bURProj = Project(bUR, axes[i]);
-		Vector2 bULProj = Project(bUL, axes[i]);
-		Vector2 bLRProj = Project(bLR, axes[i]);
-		Vector2 bLLProj = Project(bLL, axes[i]);
+		Vector3 bURProj = Project(bUR, axes[i]);
+		Vector3 bULProj = Project(bUL, axes[i]);
+		Vector3 bLRProj = Project(bLR, axes[i]);
+		Vector3 bLLProj = Project(bLL, axes[i]);
 
 		float aURScalar = aURProj.dot(axes[i]);
 		float aULScalar = aULProj.dot(axes[i]);
