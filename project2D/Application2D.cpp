@@ -1,4 +1,6 @@
 #include "Application2D.h"
+#include "Vector2.h"
+#include "CollisionManager.h"
 
 Application2D::Application2D() 
 {

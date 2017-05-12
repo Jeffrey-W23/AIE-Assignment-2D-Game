@@ -1,4 +1,7 @@
 #include "Bullet.h"
+#include "CollisionManager.h"
+#include <iostream>
+using namespace std;
 
 Bullet::Bullet(char* textureUrl, Vector2 pos, float rad) : Entity(textureUrl)
 {

@@ -2,9 +2,6 @@
 #pragma once
 #include "Entity.h"
 #include <vector>
-#include <iostream>
-#include "Collider.h"
-using namespace std;
 
 class CollisionManager
 {

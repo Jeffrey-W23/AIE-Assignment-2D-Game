@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include <vector>
 #include "VectorCast.h"
 
 using namespace std;

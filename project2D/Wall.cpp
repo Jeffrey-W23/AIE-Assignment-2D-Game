@@ -1,5 +1,6 @@
 #include "Wall.h"
 #include "VectorCast.h"
+#include "CollisionManager.h"
 
 Wall::Wall(char* textureUrl, Vector2 pos, Vector2 size) : Entity(textureUrl)
 {

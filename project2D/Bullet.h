@@ -1,6 +1,5 @@
 #pragma once
 #include "Entity.h"
-#include "CollisionManager.h"
 
 class Bullet : public Entity
 {

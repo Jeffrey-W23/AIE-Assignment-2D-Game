@@ -1,3 +1,4 @@
+#include "Input.h"
 #include "turret.h"
 #include "VectorCast.h"
 
@@ -55,14 +56,16 @@ void turret::Update(float deltaTime)
 		antenna->LocalToGlobal();
 		antenna->setParent(nullptr);
 		//this->setChild();
-		children.clear(); // When I take this out it works?
+		//children.clear(); // When I take this out it works?
 	}
 
 	if (input->isKeyDown(INPUT_KEY_RIGHT_SHIFT))
 	{
 		// coupling
+		antenna->NewMatrix();
+
 		antenna->setParent(this);
-		this->setChild(antenna);
+		//this->setChild(antenna);
 	}
 
 	for (int i = 0; i < 15; i++)

@@ -1,6 +1,13 @@
 #include "Player.h"
 #include "VectorCast.h"
 #include "Vector3.h"
+#include "Matrix3.h"
+#include "Texture.h"
+#include "Input.h"
+#include "CollisionManager.h"
+#include <iostream>
+using namespace std;
+using namespace aie;
 
 Player::Player(char* textureUrl) : Entity(textureUrl)
 {

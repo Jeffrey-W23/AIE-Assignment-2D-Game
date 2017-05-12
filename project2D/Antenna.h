@@ -8,6 +8,10 @@ public:
 	~Antenna();
 
 	void Update(float deltaTime);
+	void NewMatrix();
 
 	float rotSpeed;
+
+private:
+	Vector2 pos;
 };

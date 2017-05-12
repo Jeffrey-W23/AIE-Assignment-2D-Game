@@ -6,10 +6,8 @@
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
-#include "Vector2.h"
 #include "Player.h"
 #include "Map.h"
-#include "CollisionManager.h"
 using namespace aie;
 
 class Application2D : public Application {

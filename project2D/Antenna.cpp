@@ -5,7 +5,7 @@ Antenna::Antenna(char* textureUrl) : Entity(textureUrl)
 	rotSpeed = 3.14f;
 
 	Matrix3 temppos;
-	temppos.setPostionv(Vector2(50, 50));
+	temppos.setPostionv(Vector2(0, 0));
 
 	localTransform = localTransform * temppos;
 	updateGlobalTransform();
@@ -26,4 +26,9 @@ void Antenna::Update(float deltaTime)
 	localTransform = localTransform * rottemp;
 
 	updateGlobalTransform();
+}
+
+void Antenna::NewMatrix()
+{
+	localTransform = Matrix3();
 }

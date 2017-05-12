@@ -1,6 +1,9 @@
 #include "CollisionManager.h"
 #include <math.h>
 #include "VectorCast.h"
+#include <iostream>
+#include "Collider.h"
+using namespace std;
 
 CollisionManager* CollisionManager::m_Instance = nullptr;
 
