@@ -1,26 +1,24 @@
-﻿  turret.cpp
+﻿  Wall.cpp
+  turret.cpp
   rect.cpp
-  main.cpp
-  Wall.cpp
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\wall.cpp(20): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\wall.cpp(21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Player.cpp
   Map.cpp
+  main.cpp
   Entity.cpp
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(18): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(29): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(19): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(30): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(20): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(31): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(54): warning C4018: '<': signed/unsigned mismatch
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(102): warning C4018: '<': signed/unsigned mismatch
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(84): warning C4018: '<': signed/unsigned mismatch
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\entity.cpp(188): warning C4018: '<': signed/unsigned mismatch
   CollisionManager.cpp
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(50): warning C4018: '<': signed/unsigned mismatch
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(82): warning C4018: '<': signed/unsigned mismatch
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(169): warning C4018: '<': signed/unsigned mismatch
-c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(184): warning C4018: '<': signed/unsigned mismatch
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(88): warning C4018: '<': signed/unsigned mismatch
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(121): warning C4018: '<': signed/unsigned mismatch
 c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(229): warning C4018: '<': signed/unsigned mismatch
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(253): warning C4018: '<': signed/unsigned mismatch
+c:\users\thomas wiltshire\desktop\pc\github\aie-assignment-2d-game\project2d\collisionmanager.cpp(310): warning C4018: '<': signed/unsigned mismatch
   Bullet.cpp
   Application2D.cpp
   Antenna.cpp

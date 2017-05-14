@@ -1,3 +1,4 @@
+//#include, using etc
 #include "CollisionManager.h"
 #include <math.h>
 #include "VectorCast.h"
@@ -5,37 +6,65 @@
 #include "Collider.h"
 using namespace std;
 
+// Set instance to null
 CollisionManager* CollisionManager::m_Instance = nullptr;
 
+//--------------------------------------------------------------------------------------
+// Default Constructor.
+//--------------------------------------------------------------------------------------
 CollisionManager::CollisionManager()
 {
 }
 
+//--------------------------------------------------------------------------------------
+// Default Destructor
+//--------------------------------------------------------------------------------------
 CollisionManager::~CollisionManager()
 {
 }
 
+//--------------------------------------------------------------------------------------
+// Instance of the collison manager
+//--------------------------------------------------------------------------------------
 CollisionManager* CollisionManager::GetInstance()
 {
 	return m_Instance;
 }
 
+//--------------------------------------------------------------------------------------
+// Create: Create a boundingbox.
+//--------------------------------------------------------------------------------------
 void CollisionManager::Create()
 {
 	if (!m_Instance)
 	m_Instance = new CollisionManager();
 }
 
+//--------------------------------------------------------------------------------------
+// Destroy: Destory boundingboxes on shut down.
+//--------------------------------------------------------------------------------------
 void CollisionManager::Destory()
 {
 	delete m_Instance;
 }
 
+//--------------------------------------------------------------------------------------
+// AddObject: Add an object from the collision list.
+//
+// Param:
+//		pObject: An entity for the object you want to add.
+//--------------------------------------------------------------------------------------
 void CollisionManager::AddObject(Entity* pObject)
 {
 	m_CollisionList.push_back(pObject);
 }
 
+//--------------------------------------------------------------------------------------
+// RemoveObject: Remove object from the collision list.
+//
+// Param:
+//		pObject: An entity for the object you want to remove.
+//--------------------------------------------------------------------------------------
 void CollisionManager::RemoveObject(Entity* pObject)
 {
 	auto iter = std::find(m_CollisionList.begin(), m_CollisionList.end(), pObject);
@@ -44,7 +73,16 @@ void CollisionManager::RemoveObject(Entity* pObject)
 	m_CollisionList.erase(iter);
 }
 
-// test 2 boxes
+/////////////////////////////////////////// TEST COLLISIONS ///////////////////////////////////////////
+//--------------------------------------------------------------------------------------
+// Test Collisions: Different function for different object types to check if colliding.
+//
+// Param:
+//		pObject: The entity to check if its colliding.
+//
+// Returns:
+//		Entity: The entity that is being collided with.
+//--------------------------------------------------------------------------------------
 Entity* CollisionManager::TestBoxBoxCollision(Entity* pObject)
 {
 	for (int i = 0; i < m_CollisionList.size(); ++i)
@@ -52,6 +90,7 @@ Entity* CollisionManager::TestBoxBoxCollision(Entity* pObject)
 		if (pObject == m_CollisionList[i])
 			continue;
 
+		// Return whats colliding if SAT IsCollding is true.
 		if (IsColliding(pObject, m_CollisionList[i]))
 		{
 			return m_CollisionList[i];
@@ -76,7 +115,7 @@ Entity* CollisionManager::TestBoxBoxCollision(Entity* pObject)
 	return nullptr;
 }
 
- //test box and circle
+ // Test Box and Sphere
 Entity* CollisionManager::TestSphereBoxCollision(Entity* pObject)
 {
 	for (int i = 0; i < m_CollisionList.size(); ++i)
@@ -84,7 +123,7 @@ Entity* CollisionManager::TestSphereBoxCollision(Entity* pObject)
 		if (pObject == m_CollisionList[i])
 			continue;
 
-		// PUT IF HERE TO CHECK IF TYPE "THIS" // DIDNT WORK
+		// Check if it is colliding with itslef.
 		if (pObject->GetType() == m_CollisionList[i]->GetType())
 			continue;
 		
@@ -113,22 +152,7 @@ Entity* CollisionManager::TestSphereBoxCollision(Entity* pObject)
 	return nullptr;
 }
 
-//collider of wall, dir of bullet
-Vector2 CollisionManager::Bounce(Entity* pObject, Vector2 dir, Vector2 pos)
-{
-	Vector2 result;
-	result = pos - pObject->GetPosition();
-
-	if (fabsf(result.x) > fabsf(result.y))
-		result.y = 0;
-	else
-		result.x = 0;
-	
-	Vector2 normal = Vector2::Normalised(result);
-	return dir - 2 * dir.dot(normal) * normal;
-}
-
-// test 2 circles
+// Hal;f complete sphere sphere collision test
 //Entity* CollisionManager::TestSphereSphereCollision(Vector2 pos1, Vector2 pos2, float rad1, float rad2)
 //{
 //	for (int i = 0; i < m_CollisionList.size(); ++i)
@@ -145,13 +169,40 @@ Vector2 CollisionManager::Bounce(Entity* pObject, Vector2 dir, Vector2 pos)
 //
 //	return nullptr;
 //}
+/////////////////////////////////////////// TEST COLLISIONS ///////////////////////////////////////////
 
+//--------------------------------------------------------------------------------------
+// Bounce: Resolve a collision with a bounce.
+//
+// Param:
+//		pObject: An entity of the object you want to bounce.
+//		dir: A Vector2 for the direction you want the object to bounce.
+//		pos: A Vector2 for the pos of the object.
+//--------------------------------------------------------------------------------------
+Vector2 CollisionManager::Bounce(Entity* pObject, Vector2 dir, Vector2 pos)
+{
+	Vector2 result;
+	result = pos - pObject->GetPosition();
 
+	if (fabsf(result.x) > fabsf(result.y))
+		result.y = 0;
+	else
+		result.x = 0;
+	
+	Vector2 normal = Vector2::Normalised(result);
+	return dir - 2 * dir.dot(normal) * normal;
+}
 
-
-
-
-// SAT
+//--------------------------------------------------------------------------------------
+// Project: Project the Vector3 for SAT collision testing.
+//
+// Param:
+//		a: A Vector3 a.
+//		b: A Vector3 b
+//
+// Returns:
+//		Vector3: Returns the Vector3 projection of an object.
+//--------------------------------------------------------------------------------------
 Vector3 CollisionManager::Project(Vector3& a, Vector3& b)
 {
 	Vector3 result;
@@ -162,6 +213,15 @@ Vector3 CollisionManager::Project(Vector3& a, Vector3& b)
 	return result;
 }
 
+//--------------------------------------------------------------------------------------
+// MinV: Checks the minimum of 2 values in a dynamic array
+//
+// Param:
+//		vector: take in a Dynamic array of floats
+//
+// Returns:
+//		float: Returns a float for the mimimum value.
+//--------------------------------------------------------------------------------------
 float MinV(vector<float> x)
 {
 	float retVal = x[0];
@@ -177,6 +237,15 @@ float MinV(vector<float> x)
 	return retVal;
 }
 
+//--------------------------------------------------------------------------------------
+// MaxV: Checks the maximum of 2 values in a dynamic array
+//
+// Param:
+//		vector: take in a Dynamic array of floats
+//
+// Returns:
+//		float: Returns a float for the maximum value.
+//--------------------------------------------------------------------------------------
 float MaxV(vector<float> x)
 {
 	float retVal = x[0];
@@ -192,6 +261,18 @@ float MaxV(vector<float> x)
 	return retVal;
 }
 
+//--------------------------------------------------------------------------------------
+// IsColliding: Check if 2 SAT boundingboxes are colliding.
+//
+// Checks each corner of both shapes to find out if they are hitting and where.
+//
+// Param:
+//		a: An Entity for an object that can collide
+//		b: An Entity for an object that can collide
+//
+// Returns:
+//		bool: Returns a bool of true or falue for if a collision is happening.
+//--------------------------------------------------------------------------------------
 bool CollisionManager::IsColliding(Entity* a, Entity* b)
 {
 	rect rcA = a->boundingBox;

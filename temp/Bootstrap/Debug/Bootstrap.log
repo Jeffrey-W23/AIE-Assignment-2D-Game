@@ -1,8 +1,8 @@
-﻿  imgui_glfw3.cpp
-  Texture.cpp
+﻿  Texture.cpp
   SoundManager.cpp
   Renderer2D.cpp
   Input.cpp
+  imgui_glfw3.cpp
   Gizmos.cpp
   Font.cpp
   Audio.cpp

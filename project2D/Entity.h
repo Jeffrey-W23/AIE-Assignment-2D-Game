@@ -10,6 +10,7 @@
 using namespace std;
 using namespace aie;
 
+// Enums for each type a entity can be
 enum Types
 {
 	BULLET,
@@ -18,61 +19,141 @@ enum Types
 	ANTENNA
 };
 
-// Entity Object
+//--------------------------------------------------------------------------------------
+// Entity object
+//--------------------------------------------------------------------------------------
 class Entity
 {
 public:
 
-	// Default Constructor
+	//--------------------------------------------------------------------------------------
+	// Default Constructor.
+	//
+	// Param: 
+	//		textureUrl: Takes in a char for specifying a texture url in texture file location.
+	//--------------------------------------------------------------------------------------
 	Entity(char* textureUrl);
 	
+	//--------------------------------------------------------------------------------------
 	// Default Destructor
+	//--------------------------------------------------------------------------------------
 	~Entity();
 
-	// Set Parent and child
+	//--------------------------------------------------------------------------------------
+	// setParent: Set the parent of the entity.
+	//
+	// Param:
+	//		sParent: An entity for the parent object.
+	//--------------------------------------------------------------------------------------
 	void setParent(Entity* sParent);
+
+	//--------------------------------------------------------------------------------------
+	// setChild: Set the child of the entity.
+	//
+	// Param:
+	//		sChild: An entity for the child object.
+	//--------------------------------------------------------------------------------------
 	void setChild(Entity* sChild);
 
-	// Update the Global Transform
+	//--------------------------------------------------------------------------------------
+	// updateGlobalTransform: Update the Global Transform.
+	//--------------------------------------------------------------------------------------
 	void updateGlobalTransform();
 
-	// Get position and if colliding
+	//--------------------------------------------------------------------------------------
+	// GetCollider
+	//
+	// Return:
+	//		Collider: Return Collider
+	//--------------------------------------------------------------------------------------
 	Collider& GetCollider();
+
+	//--------------------------------------------------------------------------------------
+	// GetPosition: Get the position of the entity.
+	//--------------------------------------------------------------------------------------
 	Vector2 GetPosition();
 
-	// Set postion
+	//--------------------------------------------------------------------------------------
+	// SetPosition: Set the position of the entity.
+	//
+	// Param:
+	//		x: a float for the x of entity.
+	//		y: a float for the y of enity.
+	//--------------------------------------------------------------------------------------
 	void SetPosition(float x, float y);
 
-	// Setter and getter for type
+	//--------------------------------------------------------------------------------------
+	// SetType: Set what type the entity is.
+	//
+	// Param:
+	//		types: a Type enum value.
+	//--------------------------------------------------------------------------------------
 	void SetType(Types types);
+
+	//--------------------------------------------------------------------------------------
+	// Update: Get the Entity type.
+	//
+	// Return:
+	//		Types: Returns the type for the entity.
+	//--------------------------------------------------------------------------------------
 	Types GetType();
 
-	// Change localtranform to globaltransform
+	//--------------------------------------------------------------------------------------
+	// LocalToGlobal: Change a localtransform to a globaltransform.
+	//--------------------------------------------------------------------------------------
 	void LocalToGlobal();
 
-	// Update and draw function
+	//--------------------------------------------------------------------------------------
+	// Update: A virtual function to update objects.
+	//
+	// Param:
+	//		deltaTime: Pass in deltaTime. A number that updates per second.
+	//--------------------------------------------------------------------------------------
 	virtual void Update(float deltaTime);
+
+	//--------------------------------------------------------------------------------------
+	// Draw: A virtual function to render (or "draw") objects to the screen.
+	//
+	// Param:
+	//		renderer2D: a pointer to Renderer2D for rendering objects to screen.
+	//--------------------------------------------------------------------------------------
 	virtual void Draw(Renderer2D* renderer2D);
 
-	// Bounding box
+	//--------------------------------------------------------------------------------------
+	// A rect used as the bounding box for all entites
+	//--------------------------------------------------------------------------------------
 	rect boundingBox;
 
 protected:
 
-	// Parent and draw
+	//--------------------------------------------------------------------------------------
+	// A Entity pointer for parent
+	//--------------------------------------------------------------------------------------
 	Entity* Parent;
+
+	//--------------------------------------------------------------------------------------
+	// A Dynamic array of Entity pointers
+	//--------------------------------------------------------------------------------------
 	vector<Entity*> children;
 
-	// Local and global transforms
+	//--------------------------------------------------------------------------------------
+	// A Matrix3 for the local and global transforms.
+	//--------------------------------------------------------------------------------------
 	Matrix3 localTransform;
 	Matrix3 GlobalTrasform;
 
-	// collider
+	//--------------------------------------------------------------------------------------
+	// An instance of the Collider
+	//--------------------------------------------------------------------------------------
 	Collider m_Collider;
 
-	// texture
+	//--------------------------------------------------------------------------------------
+	// A pointer to texture.
+	//--------------------------------------------------------------------------------------
 	Texture* texture;
 
-	// what type is the object
+	//--------------------------------------------------------------------------------------
+	// An instance of Type. What type is the object
+	//--------------------------------------------------------------------------------------
 	Types types;
 };
